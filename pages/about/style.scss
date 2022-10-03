@@ -1,0 +1,118 @@
+.about-row {
+    padding-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    &__text {
+        flex-basis: 50%;
+    }
+    &__img {
+        flex-basis: 50%;
+        img {
+            width: 100%;
+        }
+    }
+}
+.row-text {
+    padding-right: 5rem;
+    &__h3 {
+        font-size: 16px;
+        padding-top: 2rem;
+    }
+    &__p {
+        padding-top: 2rem;
+        font-size: 14px;
+    }
+    &__btn {
+        margin-top: 2rem;
+    }
+    &__ul {
+        padding-top: 2rem;
+        li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.5rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            &::before {
+                content: "";
+                background: linear-gradient(180deg, #c01215 0%, #720e16 100%);
+                width: 12px;
+                height: 12px;
+                position: absolute;
+                left: 0;
+                border-radius: 50%;
+                top: 4px;
+            }
+        }
+    }
+}
+.about-advantages {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    &__item {
+        flex-basis: calc(100% / 3);
+        text-align: center;
+        img {
+            width: 70px;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 0.5rem;
+        }
+        span {
+            color: #777;
+        }
+    }
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 769px) {
+    .row-text {
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 426px) {
+    .row-text {
+        padding-right: 0;
+    }
+    .about-row {
+        padding-top: 30px;
+        display: block;
+        &__img {
+            margin-top: 3rem;
+        }
+    }
+    .about-conditions {
+        padding: 30px 0;
+        display: block;
+        &__item {
+            text-align: center;
+            margin-bottom: 2rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .about-advantages {
+        display: block;
+        &__item {
+            margin-bottom: 2rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 376px) {
+}
+
+@media (max-width: 321px) {
+}

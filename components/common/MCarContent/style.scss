@@ -1,0 +1,108 @@
+.cars-item {
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    &__special-offer {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 70px;
+        img {
+            transform: rotate(70deg);
+            width: 100%;
+        }
+    }
+    &__text {
+        padding: 20px;
+    }
+    &__title {
+        font-size: 18px;
+        color: #777;
+    }
+    &__model {
+        font-size: 18px;
+        color: #777;
+        margin-bottom: 0.5rem;
+    }
+    &__mod {
+        position: relative;
+        padding-left: 20px;
+        font-size: 12px;
+        padding-bottom: 0.2rem;
+        &::before {
+            content: "";
+            background: url(../../../static/images/car-engine.png);
+            width: 16px;
+            height: 16px;
+            background-size: cover;
+            position: absolute;
+            left: 0;
+            top: -1px;
+        }
+    }
+    &__kpp {
+        font-size: 12px;
+        padding-bottom: 0.2rem;
+    }
+    &__mileage {
+        font-size: 12px;
+        padding-bottom: 0.2rem;
+    }
+    &__year-from {
+        font-size: 12px;
+        padding-bottom: 0.2rem;
+    }
+    &__old-price {
+        font-size: 15px;
+        text-decoration: line-through;
+        color: #777;
+        padding-bottom: 0.2rem;
+    }
+    &__price {
+        font-size: 18px;
+        padding-bottom: 0.2rem;
+        font-weight: bold;
+    }
+    &__credit-text-name-title {
+        color: #555;
+        text-transform: uppercase;
+        font-size: 12px;
+        padding-bottom: 0.2rem;
+    }
+    &__credit-text-name {
+        font-size: 12px;
+        padding-bottom: 0.2rem;
+        color: #c01215;
+    }
+}
+.item-flex {
+    display: flex;
+    &__item {
+        flex-basis: 50%;
+    }
+}
+.cars-item__img {
+    img {
+        width: 100%;
+    }
+}
+.one-column {
+    display: block;
+}
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 769px) {
+}
+
+@media (max-width: 426px) {
+    .item-flex {
+        display: block;
+    }
+}
+
+@media (max-width: 376px) {
+}
+
+@media (max-width: 321px) {
+}

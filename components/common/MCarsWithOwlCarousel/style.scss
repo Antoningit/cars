@@ -1,0 +1,24 @@
+.custom-owl-carousel {
+    position: relative;
+    padding-bottom: 4rem;
+}
+.arrow-left {
+    cursor: pointer;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    img {
+        width: 30px;
+        transform: rotate(180deg);
+    }
+}
+
+.arrow-right {
+    cursor: pointer;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 0;
+    img {
+        width: 30px;
+    }
+}

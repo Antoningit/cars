@@ -1,0 +1,108 @@
+.vykup-main {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) 0% 0% / cover,
+        url(../../static/images/vykup1.jpg) center center no-repeat;
+}
+.vykup-row {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    &__text {
+        flex-basis: 50%;
+    }
+    &__img {
+        flex-basis: 50%;
+    }
+}
+.row-text {
+    &__title {
+        color: #fff;
+    }
+    &__p {
+        color: #fff;
+        padding: 2rem 0;
+    }
+}
+
+.vykup-advantages {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    &__item {
+        flex-basis: 25%;
+        text-align: center;
+        img {
+            width: 70px;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 0.5rem;
+        }
+        span {
+            color: #777;
+        }
+    }
+}
+
+.vykup-documents {
+    padding-bottom: 3rem;
+    ul {
+        li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.5rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            &::before {
+                content: "";
+                background: linear-gradient(180deg, #c01215 0%, #720e16 100%);
+                width: 12px;
+                height: 12px;
+                position: absolute;
+                left: 0;
+                border-radius: 50%;
+                top: 4px;
+            }
+        }
+    }
+    h3 {
+        padding-top: 2rem;
+    }
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 769px) {
+}
+
+@media (max-width: 426px) {
+    .row-text {
+        padding-right: 0;
+    }
+    .vykup-row {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        display: block;
+        &__img {
+            margin-top: 3rem;
+        }
+    }
+    .vykup-advantages {
+        display: block;
+        &__item {
+            margin-bottom: 2rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 376px) {
+}
+
+@media (max-width: 321px) {
+}

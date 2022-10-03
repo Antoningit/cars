@@ -1,0 +1,47 @@
+.filters-with-cars-flex {
+    flex-basis: 50%;
+    padding: 30px;
+    &__carousel-mobile {
+        display: none;
+    }
+}
+.cars-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+.filters-in-modal {
+    display: flex;
+    div {
+        flex-basis: 50%;
+    }
+}
+.change-car {
+    text-align: center;
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 769px) {
+}
+
+@media (max-width: 426px) {
+    .filters-with-cars-flex {
+        &__carousel-desktop {
+            display: none;
+        }
+        &__carousel-mobile {
+            display: block;
+        }
+    }
+    .filters-in-modal {
+        display: block;
+    }
+}
+
+@media (max-width: 376px) {
+}
+
+@media (max-width: 321px) {
+}

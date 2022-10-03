@@ -1,0 +1,89 @@
+.trade-in-row {
+    padding-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    &__text {
+        flex-basis: 50%;
+    }
+    &__img {
+        flex-basis: 50%;
+        img {
+            width: 100%;
+        }
+    }
+}
+.row-text {
+    padding-right: 5rem;
+    &__p {
+        padding: 2rem 0;
+    }
+}
+.trade-in-advantages {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &__item {
+        flex-basis: 32%;
+        p {
+            font-size: 20px;
+            margin-bottom: 1rem;
+        }
+        ul {
+            li {
+                color: #777;
+                margin-bottom: 1rem;
+                position: relative;
+                padding-left: 2.5rem;
+                &::before {
+                    content: "";
+                    background: url(../../static/images/check.png);
+                    width: 30px;
+                    height: 30px;
+                    background-size: cover;
+                    position: absolute;
+                    left: 0;
+                    top: -5px;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 769px) {
+}
+
+@media (max-width: 426px) {
+    .row-text {
+        padding-right: 0;
+    }
+    .trade-in-row {
+        padding-top: 30px;
+        display: block;
+        &__img {
+            margin-top: 3rem;
+        }
+    }
+    .trade-in-advantages {
+        display: block;
+        &__item {
+            margin-bottom: 2rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 376px) {
+}
+
+@media (max-width: 321px) {
+}

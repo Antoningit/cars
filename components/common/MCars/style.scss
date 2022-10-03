@@ -1,0 +1,31 @@
+.cars-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+.cars-item {
+    margin-bottom: 1rem;
+    flex-basis: 23%;
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 769px) {
+    .cars-item {
+        flex-basis: 48%;
+    }
+}
+
+@media (max-width: 426px) {
+}
+
+@media (max-width: 376px) {
+    .cars-item {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 321px) {
+}
