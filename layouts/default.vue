@@ -1,8 +1,8 @@
 <template>
   <div>
-    <m-header id="header" />
+    <m-header :cars="cars" id="header" />
     <main><Nuxt :style="paddingTop" /></main>
-    <m-footer />
+    <m-footer :cars="cars" />
     <portal-target name="app"></portal-target>
   </div>
 </template>
@@ -26,7 +26,16 @@ export default {
   mounted() {
     this.paddingTop = this.resolvePaddingTop();
   },
-  created() {},
+  async created() {
+    if (this.cars.length === 0) {
+      await this.$store.dispatch("getCars");
+    }
+  },
+  computed: {
+    cars() {
+      return this.$store.getters.CARS;
+    },
+  },
   methods: {
     resolvePaddingTop() {
       // this.$refs не видит в этом компоненте - выдает пустой объект
@@ -37,5 +46,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

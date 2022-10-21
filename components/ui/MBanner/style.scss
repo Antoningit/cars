@@ -1,0 +1,234 @@
+.banner-with-credit-modal {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: #eb2b26;
+  color: #fff;
+  padding: 1rem;
+  justify-content: space-between;
+  &__item {
+    flex-basis: 33%;
+    &:first-child {
+      img {
+        width: 50px;
+        object-fit: cover;
+      }
+    }
+    &:last-child {
+      img {
+        width: 70px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+.item-content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  &__text {
+    margin-left: 1rem;
+    span {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+}
+
+.text {
+  &__white {
+    background: #fff;
+    color: #eb2b26;
+    padding: 5px;
+    display: inline-block;
+  }
+}
+
+.card-promo {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: #edf1f7;
+  &__additional {
+    padding: 1rem;
+    flex-basis: 40%;
+    background: #fc254c;
+    color: #fff;
+    text-transform: uppercase;
+    transform: skew(30deg);
+  }
+}
+.promo-additional {
+  &__flex {
+    transform: skew(-30deg);
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+  }
+  &__text {
+    font-size: 20px;
+  }
+  &__subtitle {
+    margin-left: 0.5rem;
+  }
+  &__credit {
+    margin-left: 1rem;
+  }
+  &__img {
+    width: 60px;
+    img {
+      width: 100%;
+    }
+  }
+}
+.promo-month {
+  padding: 1rem;
+  flex-basis: 30%;
+  &__title {
+    font-size: 30px;
+    color: #f14950;
+    text-transform: uppercase;
+  }
+  &__subtitle {
+    text-transform: uppercase;
+  }
+}
+.promo-guarantee {
+  flex-basis: 30%;
+  padding: 1rem;
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__title {
+    font-weight: bold;
+    color: #fc254c;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+}
+.guarantee-bottom {
+  text-align: center;
+  color: #777;
+  text-transform: uppercase;
+  &__subtitle {
+    font-weight: bold;
+  }
+}
+
+.banner-gift {
+  cursor: pointer;
+  img {
+    width: 100%;
+  }
+}
+
+.banner-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.banner-tyres {
+  cursor: pointer;
+  &__title {
+    color: #e42e36;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  &__subtitle {
+    color: #777;
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+  &__gift {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 16px;
+  }
+  &__btn {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 1025px) {
+  .promo-month {
+    &__title {
+      font-size: 17px;
+    }
+  }
+  .promo-additional {
+    &__text {
+      margin-right: 1rem;
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .banner-images {
+    &__img-wrapper {
+      flex-basis: 23%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .promo-guarantee {
+    &__title {
+      font-size: 16px;
+    }
+  }
+  .promo-additional {
+    &__subtitle,
+    &__credit {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .banner-images {
+    &__img-wrapper {
+      flex-basis: 48%;
+      margin-bottom: 1rem;
+      &:nth-child(3),
+      &:nth-child(4) {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .card-promo {
+    display: block;
+    &__additional {
+      transform: skew(0deg);
+    }
+  }
+  .promo-additional {
+    &__flex {
+      padding-left: 0;
+      transform: skew(0deg);
+    }
+  }
+  .banner-with-credit-modal {
+    display: block;
+    &__item {
+      &:nth-child(2) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .banner-tyres {
+    &__gift {
+      text-align: left;
+    }
+    &__btn {
+      text-align: left;
+    }
+  }
+}

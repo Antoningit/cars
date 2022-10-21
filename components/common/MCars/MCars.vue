@@ -7,7 +7,7 @@
         :key="car.id"
         class="cars-item"
       >
-        <m-car :car="car" />
+        <m-car :car="car" :cars="cars" />
       </div>
     </transition-group>
     <div class="center-div" v-if="maxCardsShownCount < cars.length">

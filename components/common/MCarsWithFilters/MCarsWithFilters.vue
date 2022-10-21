@@ -40,13 +40,6 @@
         />
       </div>
     </div>
-    <button
-      class="btn clear-btn mt-1"
-      @click="clearFiltersAndQueries"
-      v-if="queriesLength > 0"
-    >
-      Очистить фильтры
-    </button>
     <!-- <select v-model="carTitle">
           <option v-for="option in carTitleOptions" :key="option">
             {{ option }}
@@ -77,6 +70,30 @@
             {{ option }}
           </option>
         </select> -->
+
+    <div class="sort-flex">
+      <div
+        class="sort-flex__min"
+        :class="{ 'sort-flex__min--active': queries.sort === 'asc' }"
+        @click="setQuerySort('asc')"
+      >
+        Сначала по дешевле
+      </div>
+      <div
+        class="sort-flex__max"
+        :class="{ 'sort-flex__max--active': queries.sort === 'desc' }"
+        @click="setQuerySort('desc')"
+      >
+        Сначала по дороже
+      </div>
+    </div>
+    <button
+      class="btn clear-btn mt-1"
+      @click="clearFiltersAndQueries"
+      v-if="queriesLength > 0"
+    >
+      Очистить фильтры
+    </button>
     <m-cars
       :cars="filteredCarsList"
       :max-cards-shown-count-prop="maxCardsShownCount"
@@ -128,27 +145,27 @@ export default {
       ).length;
     },
     carTitleOptions() {
-      return Filters.carTitles;
+      return Filters(this.cars).carTitles;
     },
     carModelsOptions() {
       const carModelsByCarTitle = this.cars
         .filter(({ title }) => title === this.queries.carTitle)
         .map(({ model }) => model);
-      return Filters.carModels.filter((model) =>
+      return Filters(this.cars).carModels.filter((model) =>
         carModelsByCarTitle.includes(model)
       );
     },
     carEngineOptions() {
-      return Filters.carEngines;
+      return Filters(this.cars).carEngines;
     },
     carKppOptions() {
-      return Filters.carKpps;
+      return Filters(this.cars).carKpps;
     },
     carBodyOptions() {
-      return Filters.carBodys;
+      return Filters(this.cars).carBodys;
     },
     carYearFromOptions() {
-      return Filters.carYearFroms;
+      return Filters(this.cars).carYearFroms;
     },
     filteredCarsList() {
       return this.cars
@@ -182,7 +199,15 @@ export default {
           ({ price }) =>
             Number(price) < Number(this.queries.carPrice) ||
             this.queries.carPrice === ""
-        );
+        )
+        .sort((a, b) => {
+          if (this.queries.sort === "asc") {
+            return Number(a.price) - Number(b.price);
+          }
+          if (this.queries.sort === "desc") {
+            return Number(b.price) - Number(a.price);
+          }
+        });
     },
   },
   methods: {
@@ -237,6 +262,11 @@ export default {
     setQueryCarPrice(value) {
       const queries = this.resolveQueries();
       queries.carPrice = value;
+      this.$router.push({ query: queries });
+    },
+    setQuerySort(value) {
+      const queries = this.resolveQueries();
+      queries.sort = value;
       this.$router.push({ query: queries });
     },
     resolveQueries() {

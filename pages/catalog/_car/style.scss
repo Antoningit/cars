@@ -1,200 +1,221 @@
 .car-card {
-    &__title {
-        font-size: 25px;
-    }
-    &__content {
-        display: flex;
-    }
+  &__main {
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, #edf1f7 100%);
+    padding-bottom: 2rem;
+  }
+  &__title {
+    padding-top: 1rem;
+    font-size: 25px;
+  }
+  &__content {
+    display: flex;
+  }
+  &__second-banner {
+    margin-top: 1rem;
+  }
+  &__installment {
+    margin-top: 60px;
+  }
+  &__footer {
+    background: #f3f5f6;
+  }
+  &__images-flex {
+    padding-top: 2rem;
+  }
+  &__latest {
+    padding-bottom: 2rem;
+  }
+  &__brands {
+    margin-bottom: 2rem;
+  }
 }
 .card-content {
-    margin-top: 2rem;
-    &__slider {
-        flex-basis: 50%;
-    }
+  margin-top: 2rem;
+  &__slider {
+    flex-basis: 50%;
+  }
 }
 .content-info {
-    display: flex;
-    flex-basis: 50%;
-    padding-left: 2rem;
+  display: flex;
+  flex-basis: 50%;
+  padding-left: 2rem;
 }
 .specifications-text {
-    flex-basis: 50%;
-    &__price {
-        color: #e42e36;
-        font-size: 30px;
-    }
-    &__old-price {
-        color: #665665;
-        text-decoration: line-through;
-        font-size: 18px;
-    }
-    &__trade-in {
-        margin-bottom: 2rem;
-    }
+  flex-basis: 50%;
+  &__price {
+    color: #e42e36;
+    font-size: 30px;
+  }
+  &__old-price {
+    color: #665665;
+    text-decoration: line-through;
+    font-size: 18px;
+  }
+  &__trade-in {
+    margin-bottom: 2rem;
+  }
 }
 .offer-text {
-    flex-basis: 50%;
+  flex-basis: 50%;
+  &__banner {
+    margin-top: 2rem;
+  }
 }
 .card-other {
-    margin-top: 60px;
-    &__title {
-        font-size: 20px;
-    }
-    &__cars {
-        margin-bottom: 60px;
-    }
+  &__title {
+    font-size: 20px;
+  }
 }
 .modification {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    margin-bottom: 1rem;
-    &:last-child {
-        margin-bottom: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__icon {
+    width: 32px;
+    margin-right: 0.5rem;
+    img {
+      width: 100%;
     }
-    &__icon {
-        width: 32px;
-        margin-right: 0.5rem;
-        img {
-            width: 100%;
-        }
-    }
+  }
 }
 .modification-text {
-    &__title {
-        margin-bottom: 0.5rem;
-    }
-    &__description {
-        color: #999;
-    }
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+  &__description {
+    color: #999;
+  }
 }
 .content-advantages {
-    padding-top: 2rem;
-    padding-left: 2rem;
+  padding-top: 2rem;
+  padding-left: 2rem;
 }
 .grid-content {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    margin-bottom: 1rem;
-    &__title {
-        margin-bottom: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin-bottom: 1rem;
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+  &__description {
+    color: #777;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__img {
+    width: 32px;
+    margin-right: 0.5rem;
+    img {
+      width: 100%;
     }
-    &__description {
-        color: #777;
-    }
-    &:last-child {
-        margin-bottom: 0;
-    }
-    &__img {
-        width: 32px;
-        margin-right: 0.5rem;
-        img {
-            width: 100%;
-        }
-    }
+  }
 }
 .additional-content {
-    margin-top: 2rem;
-    &__title {
-        font-size: 20px;
-    }
-    &__description {
-        padding-top: 0.5rem;
-        color: #777;
-    }
+  margin-top: 2rem;
+  &__title {
+    font-size: 20px;
+  }
+  &__description {
+    padding-top: 0.5rem;
+    color: #777;
+  }
 }
 .content-btns {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    &__trade-in,
-    &__credit {
-        margin-right: 1rem;
-    }
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  &__trade-in,
+  &__credit {
+    margin-right: 1rem;
+  }
 }
-.card-tab {
-    padding-top: 2rem;
-}
+
 .tab-specifications {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .specifications-left,
 .specifications-right {
-    flex-basis: 48%;
+  flex-basis: 48%;
 }
 
 .left-flex,
 .right-flex {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #f4f4f4;
-    padding-bottom: 5px;
-    &__title {
-        color: #777;
-    }
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f4f4f4;
+  padding-bottom: 5px;
+  &__title {
+    color: #777;
+  }
 }
 .tab-advantages {
-    p {
-        font-size: 20px;
-        margin-bottom: 0.5rem;
-        padding-left: 2.5rem;
-        position: relative;
-        &::before {
-            content: "";
-            background: url(../../../static/images/check.png);
-            width: 30px;
-            height: 30px;
-            background-size: cover;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
+  p {
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+    padding-left: 2.5rem;
+    position: relative;
+    &::before {
+      content: "";
+      background: url(../../../static/images/check.png);
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
-    span {
-        display: block;
-        color: #777;
-        margin-bottom: 1rem;
-    }
+  }
+  span {
+    display: block;
+    color: #777;
+    margin-bottom: 1rem;
+  }
 }
 
 @media (max-width: 1025px) {
 }
 
 @media (max-width: 769px) {
-    .content-btns {
-        display: block;
-        &__credit {
-            margin: 1rem 0;
-        }
+  .content-btns {
+    display: block;
+    &__credit {
+      margin: 1rem 0;
     }
+  }
 }
 
 @media (max-width: 426px) {
-    .car-card {
-        &__title {
-            font-size: 18px;
-        }
+  .car-card {
+    &__title {
+      font-size: 18px;
     }
-    .card-content {
-        display: block;
-    }
-    .info {
-        margin-top: 2rem;
-    }
-    .content-info {
-        padding-left: 0;
-        display: block;
-    }
-    .offer-text {
-        margin-top: 1rem;
-    }
-    .content-advantages {
-        padding-left: 0;
-    }
+  }
+  .card-content {
+    display: block;
+  }
+  .info {
+    margin-top: 2rem;
+  }
+  .content-info {
+    padding-left: 0;
+    display: block;
+  }
+  .offer-text {
+    margin-top: 1rem;
+  }
+  .content-advantages {
+    padding-top: 2.5rem;
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 376px) {

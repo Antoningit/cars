@@ -35,9 +35,14 @@
           <div class="footer-content__contacts">
             <div class="footer-content__title">Контакты</div>
             <div class="contacts__content">
-              <div class="contacts__adress">г. Москва, ул. Западная, д. 34</div>
-              <div class="contacts__phone">+7 (999) 444 55-55</div>
-              <div class="contacts__mail">mail@yandex.ru</div>
+              <!-- <div class="contacts__adress">г. Москва, ул. Западная, д. 34</div> -->
+              <div class="contacts__phone">
+                <a href="tel:+74955404162">+7 (495) 540 41-62</a>
+              </div>
+              <div class="contacts__phone">
+                <a href="tel:+78005005397">+7 (800) 500 53-97</a>
+              </div>
+              <!-- <div class="contacts__mail">mail@yandex.ru</div> -->
             </div>
           </div>
           <div class="footer-content__menu content-menu">
@@ -70,6 +75,7 @@
           </div>
           <div v-else class="footer-content__btn">
             <m-button-with-modal
+              :cars="cars"
               :name="$options.static.ButtonCases.CREDIT_ORDER"
             />
           </div>
@@ -93,10 +99,16 @@
 
 <script>
 import { getUniqueCarTitles, MenuItems, ButtonCases } from "../../../constants";
-import MButtonWithModal from "../../../components/ui/MButtonWithModal.vue";
+import MButtonWithModal from "../../../components/ui/MButtonWithModal/MButtonWithModal.vue";
 export default {
   components: {
     MButtonWithModal,
+  },
+  props: {
+    cars: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
@@ -108,7 +120,7 @@ export default {
     ButtonCases,
   },
   created() {
-    this.actualCars = getUniqueCarTitles();
+    this.actualCars = getUniqueCarTitles(this.cars);
   },
   computed: {
     isCatalogPage() {
@@ -123,5 +135,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./style.scss" scoped>
-</style>
+<style lang="scss" src="./style.scss" scoped></style>

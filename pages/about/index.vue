@@ -61,7 +61,10 @@
             </p>
           </div>
           <div class="row-text__btn">
-            <m-button-with-modal :name="$options.static.ButtonCases.CALLBACK" />
+            <m-button-with-modal
+              :cars="cars"
+              :name="$options.static.ButtonCases.CALLBACK"
+            />
           </div>
         </div>
         <div class="about-row__img">
@@ -91,10 +94,16 @@
 
 <script>
 import { ButtonCases } from "../../constants";
-import MButtonWithModal from "../../components/ui/MButtonWithModal.vue";
+import MButtonWithModal from "../../components/ui/MButtonWithModal/MButtonWithModal.vue";
 export default {
   components: {
     MButtonWithModal,
+  },
+  props: {
+    cars: {
+      type: Array,
+      default: () => [],
+    },
   },
   static: {
     ButtonCases,
@@ -102,5 +111,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./style.scss" scoped>
-</style>
+<style lang="scss" src="./style.scss" scoped></style>

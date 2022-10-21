@@ -1,19 +1,17 @@
 <template>
-  <div class="request">
+  <div v-if="formType === 1" class="request">
     <div class="form" v-if="status.length === 0">
       <div class="form-title mb-1">{{ formText.title }}</div>
       <div class="form-description mb-2">{{ formText.description }}</div>
       <form>
         <input
           type="text"
-          name="title"
           v-model="title"
           class="mb-1"
           placeholder="Ваше Имя"
         />
         <input
           type="text"
-          name="phone"
           v-model="phone"
           class="mb-1"
           placeholder="Ваш Телефон"
@@ -53,6 +51,58 @@
       </p>
     </div>
   </div>
+  <div v-else class="catalog__order order-request">
+    <div class="row order-request__row">
+      <div class="order-request__text">
+        Нужно больше вариантов или требуется наша помощь?
+      </div>
+      <div class="order-request__form request-form">
+        <form v-if="status.length === 0" class="request-form__form" action="">
+          <div class="request-form__input">
+            <input
+              type="text"
+              v-model="phone"
+              :class="{
+                invalid:
+                  ($v.phone.$dirty && !$v.phone.required) ||
+                  ($v.phone.$dirty && !$v.phone.minLength) ||
+                  ($v.phone.$dirty && !$v.phone.mustBeNumber),
+              }"
+              placeholder="Ваш телефон"
+            />
+          </div>
+          <div class="request-form__btn">
+            <button
+              class="btn"
+              type="submit"
+              @click.prevent="onBtnSubmitHandler"
+            >
+              Отправить
+            </button>
+          </div>
+        </form>
+        <div class="request-form__after form-after" v-else-if="status === 'OK'">
+          <p class="form-after__p">
+            Спасибо за заявку! Мы свяжемся с вами в ближайшее время
+          </p>
+        </div>
+        <div class="request-form__after form-after" v-else>
+          <p class="form-after__p">
+            Произошла ошибка при отправке. Закройте форму и попробуйте ещё раз
+          </p>
+        </div>
+        <transition-group name="fade">
+          <small
+            v-for="{ condition, text } in validationsTexts"
+            :key="text"
+            class="mt-1 d-block request-form__error-text"
+            v-show="condition"
+            >{{ text }}</small
+          >
+        </transition-group>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -68,6 +118,14 @@ export default {
     name: {
       type: String,
       default: "Обратный звонок",
+    },
+    formType: {
+      type: Number,
+      default: 1,
+    },
+    car: {
+      type: Object,
+      default: () => {},
     },
   },
   data() {
@@ -178,8 +236,9 @@ export default {
         return;
       }
       const formData = {
-        title: this.title,
+        formTitle: this.title,
         phone: this.phone,
+        ...this.car,
       };
       const data = toFormData(formData);
       fetch(`${SITE_DOMEN}/mail.php`, {

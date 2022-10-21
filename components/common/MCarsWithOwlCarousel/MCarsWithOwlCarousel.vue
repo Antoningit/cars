@@ -1,8 +1,8 @@
 <template>
-  <div class="custom-owl-carousel">
+  <div v-if="cars.length > 0" class="custom-owl-carousel">
     <carousel v-bind="carouselOptions">
       <div v-for="car in cars" :key="car.id" class="cars-item">
-        <m-car :car="car" :is-promo="isPromo" />
+        <m-car :car="car" :cars="cars" :is-promo="isPromo" />
       </div>
       <template slot="prev"
         ><span class="arrow-left">

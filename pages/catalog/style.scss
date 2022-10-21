@@ -1,8 +1,20 @@
 .catalog {
-    &__cars {
-        margin-top: 60px;
-        margin-bottom: 60px;
-    }
+  &__cars {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  &__banner {
+    margin-bottom: 2rem;
+  }
+}
+
+.special-offer {
+  &__installment {
+    margin-top: 2rem;
+  }
+  &__latest {
+    margin-bottom: 2rem;
+  }
 }
 
 @media (max-width: 1025px) {

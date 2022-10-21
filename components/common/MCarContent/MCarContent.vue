@@ -5,7 +5,7 @@
       <img src="../../../static/images/special-offer.png" alt="" />
     </div>
     <div class="cars-item__img">
-      <img :src="car.img" alt="" />
+      <img :src="car.image" alt="" />
     </div>
     <div class="cars-item__text">
       <div class="cars-item__title">
@@ -75,5 +75,4 @@ export default {
 };
 </script>
 
-<style src="./style.scss" lang="scss" scoped>
-</style>
+<style src="./style.scss" lang="scss" scoped></style>

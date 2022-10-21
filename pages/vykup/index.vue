@@ -17,7 +17,10 @@
               </p>
             </div>
             <div class="row-text__btn">
-              <m-button-with-modal :name="$options.static.ButtonCases.VYKUP" />
+              <m-button-with-modal
+                :name="$options.static.ButtonCases.VYKUP"
+                :cars="cars"
+              />
             </div>
           </div>
           <div class="vykup-row__img"></div>
@@ -99,25 +102,25 @@
 
 <script>
 import { ButtonCases } from "../../constants";
-import MButtonWithModal from "../../components/ui/MButtonWithModal.vue";
+import MButtonWithModal from "../../components/ui/MButtonWithModal/MButtonWithModal.vue";
 export default {
   components: {
     MButtonWithModal,
   },
+
   static: {
     ButtonCases,
   },
-  mounted() {
-    if (this.users.length === 0) {
-      this.$store.dispatch("getUsers");
+  async created() {
+    if (this.cars.length === 0) {
+      await this.$store.dispatch("getCars");
     }
   },
   computed: {
-    users() {
-      return this.$store.getters.USERS;
+    cars() {
+      return this.$store.getters.CARS;
     },
   },
 };
 </script>
-<style lang="scss" src="./style.scss" scoped>
-</style>
+<style lang="scss" src="./style.scss" scoped></style>

@@ -7,21 +7,26 @@
 
 <script>
 import MCarsWithOwlCarousel from "../../../components/common/MCarsWithOwlCarousel/MCarsWithOwlCarousel.vue";
-import { Cars } from "../../../cars";
+//import { Cars } from "../../../cars";
 export default {
   components: {
     MCarsWithOwlCarousel,
   },
+  props: {
+    cars: {
+      type: Array,
+      default: () => [],
+    },
+  },
   static: {
-    Cars,
+    //Cars,
   },
   computed: {
     promoCars() {
-      return Cars.filter(({ is_promo: isPromo }) => isPromo);
+      return this.cars.filter(({ promo }) => promo === "Да");
     },
   },
 };
 </script>
-
 
 <style lang="scss" src="./style.scss" scoped></style>

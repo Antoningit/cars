@@ -1,9 +1,9 @@
 <template>
   <div>
     <first />
-    <second />
+    <second :cars="cars" />
     <third />
-    <fourth />
+    <fourth :cars="cars" />
   </div>
 </template>
 
@@ -15,14 +15,14 @@ import Fourth from "../components/blocks/Fourth/Fourth.vue";
 export default {
   name: "IndexPage",
   components: { First, Second, Third, Fourth },
-  mounted() {
-    if (this.users.length === 0) {
-      this.$store.dispatch("getUsers");
+  async created() {
+    if (this.cars.length === 0) {
+      await this.$store.dispatch("getCars");
     }
   },
   computed: {
-    users() {
-      return this.$store.getters.USERS;
+    cars() {
+      return this.$store.getters.CARS;
     },
   },
 };

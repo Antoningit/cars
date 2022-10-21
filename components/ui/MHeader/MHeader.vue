@@ -6,10 +6,18 @@
           <div class="header-city">
             <nuxt-link to="/">г. Москва</nuxt-link>
           </div>
-          <div class="header-adress">ул. Новохохловская д.11 стр.2</div>
-          <div class="header-phones">+7 (499) 490-05-82</div>
+          <!-- <div class="header-adress"></div> -->
+          <div class="header-phones">
+            <a href="tel:+74955404162">+7 (495) 540 41-62</a>
+          </div>
+          <div class="header-phones">
+            <a href="tel:+78005005397">+7 (800) 500 53-97</a>
+          </div>
           <div class="header-btn">
-            <m-button-with-modal :name="$options.static.ButtonCases.CALLBACK" />
+            <m-button-with-modal
+              :cars="cars"
+              :name="$options.static.ButtonCases.CALLBACK"
+            />
           </div>
         </div>
       </div>
@@ -46,6 +54,7 @@
                   <span></span>
                 </div>
                 <m-button-with-modal
+                  :cars="cars"
                   :name="$options.static.ButtonCases.CALLBACK"
                 />
                 <ul>
@@ -82,12 +91,18 @@
 
 <script>
 import { ButtonCases, MenuItems } from "../../../constants";
-import MButtonWithModal from "../../ui/MButtonWithModal.vue";
+import MButtonWithModal from "../../ui/MButtonWithModal/MButtonWithModal.vue";
 export default {
   data() {
     return {
       isShowMenuMobile: false,
     };
+  },
+  props: {
+    cars: {
+      type: Array,
+      default: () => [],
+    },
   },
   components: { MButtonWithModal },
   static: {
@@ -102,5 +117,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./style.scss" scoped>
-</style>
+<style lang="scss" src="./style.scss" scoped></style>

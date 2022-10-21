@@ -1,139 +1,142 @@
 .footer {
-    background: #2e2e2e;
-    padding: 2rem 0;
-    color: #fff;
+  background: #2e2e2e;
+  padding: 2rem 0;
+  color: #fff;
 }
 .footer-bottom {
-    background: #1e1d1d;
-    color: rgb(153, 153, 153);
-    padding: 1rem 0;
-    font-size: 12px;
+  background: #1e1d1d;
+  color: rgb(153, 153, 153);
+  padding: 1rem 0;
+  font-size: 12px;
 }
 .footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    &__contacts,
-    &__menu,
-    &__actual,
-    &__btn {
-        flex-basis: 15%;
-    }
-    &__title {
-        margin-bottom: 1rem;
-    }
-    &__schedule {
-        flex-basis: 26%;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &__contacts,
+  &__menu,
+  &__actual,
+  &__btn {
+    flex-basis: 15%;
+  }
+  &__title {
+    margin-bottom: 1rem;
+  }
+  &__schedule {
+    flex-basis: 26%;
+  }
 
-    &__about {
-        flex-basis: 20%;
-    }
+  &__about {
+    flex-basis: 20%;
+  }
 }
 .content-actual {
-    &__links {
-        cursor: pointer;
-    }
+  &__links {
+    cursor: pointer;
+  }
 }
 .content-menu {
-    &__li {
-        margin-bottom: 1rem;
-        &:last-child {
-            margin-bottom: 0;
-        }
+  &__li {
+    margin-bottom: 1rem;
+    &:last-child {
+      margin-bottom: 0;
     }
-    &__links {
-        color: #fff;
-    }
+  }
+  &__links {
+    color: #fff;
+  }
 }
 .schedule {
-    &__list {
-        ul {
-            li {
-                margin-bottom: 1rem;
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
+  &__list {
+    ul {
+      li {
+        margin-bottom: 1rem;
+        &:last-child {
+          margin-bottom: 0;
         }
+      }
     }
+  }
 }
 .about {
-    &__text {
-        font-size: 12px;
-    }
+  &__text {
+    font-size: 12px;
+  }
 }
 .contacts {
-    &__content {
-        font-size: 13px;
-        div {
-            margin-bottom: 1rem;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
+  &__content {
+    font-size: 13px;
+    div {
+      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
-    &__adress,
-    &__phone,
-    &__mail {
-        position: relative;
-        padding-left: 29px;
+  }
+  &__adress,
+  &__phone,
+  &__mail {
+    position: relative;
+    padding-left: 29px;
+  }
+  &__adress,
+  &__phone,
+  &__mail {
+    &::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      left: 0;
+      top: -4px;
     }
-    &__adress,
-    &__phone,
-    &__mail {
-        &::before {
-            content: "";
-            width: 24px;
-            height: 24px;
-            position: absolute;
-            left: 0;
-            top: -4px;
-        }
+  }
+  &__adress {
+    &::before {
+      background: url(../../../static/images/location.svg);
     }
-    &__adress {
-        &::before {
-            background: url(../../../static/images/location.svg);
-        }
+  }
+  &__phone {
+    a {
+      color: #fff;
     }
-    &__phone {
-        &::before {
-            background: url(../../../static/images/phone.svg);
-        }
+    &::before {
+      background: url(../../../static/images/phone.svg);
     }
-    &__mail {
-        &::before {
-            background: url(../../../static/images/mail.svg);
-        }
+  }
+  &__mail {
+    &::before {
+      background: url(../../../static/images/mail.svg);
     }
+  }
 }
 
 @media (max-width: 1025px) {
 }
 
 @media (max-width: 769px) {
-    .footer-content {
-        &__btn {
-            flex-basis: 100%;
-            text-align: center;
-            margin-top: 2rem;
-        }
+  .footer-content {
+    &__btn {
+      flex-basis: 100%;
+      text-align: center;
+      margin-top: 2rem;
     }
+  }
 }
 
 @media (max-width: 426px) {
-    .footer-content {
-        display: block;
-        &__about,
-        &__schedule,
-        &__contacts,
-        &__menu {
-            margin-bottom: 2rem;
-        }
-        &__btn {
-            text-align: left;
-        }
+  .footer-content {
+    display: block;
+    &__about,
+    &__schedule,
+    &__contacts,
+    &__menu {
+      margin-bottom: 2rem;
     }
+    &__btn {
+      text-align: left;
+    }
+  }
 }
 
 @media (max-width: 376px) {

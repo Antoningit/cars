@@ -1,23 +1,28 @@
 .filters-with-cars-flex {
-    flex-basis: 50%;
-    padding: 30px;
-    &__carousel-mobile {
-        display: none;
-    }
+  flex-basis: 50%;
+  padding: 2rem;
+  &__carousel-mobile {
+    display: none;
+  }
 }
 .cars-list {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
 }
 .filters-in-modal {
-    display: flex;
-    div {
-        flex-basis: 50%;
-    }
+  display: flex;
+  div {
+    flex-basis: 50%;
+  }
 }
 .change-car {
-    text-align: center;
+  display: flex;
+  align-items: center;
+  button {
+    margin-left: 0.5rem;
+    border-bottom: 1px dashed #000;
+  }
 }
 
 @media (max-width: 1025px) {
@@ -27,17 +32,17 @@
 }
 
 @media (max-width: 426px) {
-    .filters-with-cars-flex {
-        &__carousel-desktop {
-            display: none;
-        }
-        &__carousel-mobile {
-            display: block;
-        }
+  .filters-with-cars-flex {
+    &__carousel-desktop {
+      display: none;
     }
-    .filters-in-modal {
-        display: block;
+    &__carousel-mobile {
+      display: block;
     }
+  }
+  .filters-in-modal {
+    display: block;
+  }
 }
 
 @media (max-width: 376px) {

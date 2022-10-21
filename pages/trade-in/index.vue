@@ -16,6 +16,7 @@
             <m-button-with-modal
               :name="$options.static.ButtonCases.TRAID_IN_EXCHANGE"
               :is-no-car="true"
+              :cars="cars"
             />
           </div>
         </div>
@@ -65,7 +66,7 @@
 
 <script>
 import { ButtonCases } from "../../constants";
-import MButtonWithModal from "../../components/ui/MButtonWithModal.vue";
+import MButtonWithModal from "../../components/ui/MButtonWithModal/MButtonWithModal.vue";
 export default {
   components: {
     MButtonWithModal,
@@ -73,8 +74,17 @@ export default {
   static: {
     ButtonCases,
   },
+  async created() {
+    if (this.cars.length === 0) {
+      await this.$store.dispatch("getCars");
+    }
+  },
+  computed: {
+    cars() {
+      return this.$store.getters.CARS;
+    },
+  },
 };
 </script>
 
-<style lang="scss" src="./style.scss" scoped>
-</style>
+<style lang="scss" src="./style.scss" scoped></style>

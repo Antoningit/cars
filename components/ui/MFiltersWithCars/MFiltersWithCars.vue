@@ -1,7 +1,8 @@
 <template>
   <div class="filters-with-cars-flex">
-    <div class="change-car" v-if="!isChoosingNewCarActive">
-      <button class="btn clear-btn mb-1" @click="toggleIsChoosingNewCarActive">
+    <div class="change-car mb-1" v-if="!isChoosingNewCarActive">
+      <img src="../../../static/images/electric-car.png" alt="" />
+      <button class="btn clear-btn" @click="toggleIsChoosingNewCarActive">
         Изменить автомобиль
       </button>
     </div>
@@ -92,7 +93,7 @@ import MCarousel from "../../ui/MCarousel/MCarousel.vue";
 import MCarouselMobile from "../../ui/MCarousel/MCarouselMobile.vue";
 import MCarWithoutBtn from "../../common/MCarWithoutBtn/MCarWithoutBtn.vue";
 import { Filters } from "../../../constants";
-import { Cars } from "../../../cars";
+//import { Cars } from "../../../cars";
 export default {
   components: {
     MSelect,
@@ -108,6 +109,10 @@ export default {
     isNoCar: {
       type: Boolean,
       default: false,
+    },
+    cars: {
+      type: Array,
+      default: () => [],
     },
   },
   created() {
@@ -131,29 +136,29 @@ export default {
     };
   },
   static: {
-    Cars,
+    //Cars,
   },
   computed: {
     carTitleOptions() {
-      return Filters.carTitles;
+      return Filters(this.cars).carTitles;
     },
     carModelsOptions() {
-      const carModelsByCarTitle = this.$options.static.Cars.filter(
-        ({ title }) => title === this.carTitle
-      ).map(({ model }) => model);
-      return Filters.carModels.filter((model) =>
+      const carModelsByCarTitle = this.cars
+        .filter(({ title }) => title === this.carTitle)
+        .map(({ model }) => model);
+      return Filters(this.cars).carModels.filter((model) =>
         carModelsByCarTitle.includes(model)
       );
     },
     filteredCarsList() {
-      return this.$options.static.Cars.filter(
-        ({ title }) => title === this.carTitle || this.carTitle === ""
-      ).filter(
-        ({ model }) =>
-          model === this.carModel ||
-          this.carModel === "" ||
-          this.carModel == null
-      );
+      return this.cars
+        .filter(({ title }) => title === this.carTitle || this.carTitle === "")
+        .filter(
+          ({ model }) =>
+            model === this.carModel ||
+            this.carModel === "" ||
+            this.carModel == null
+        );
     },
   },
   methods: {
@@ -172,6 +177,7 @@ export default {
     },
     changeCar(car) {
       this.widgetCar = car;
+      this.$emit("car-changed", this.widgetCar);
       this.toggleIsChoosingNewCarActive();
       this.setWidgetData();
     },
@@ -184,6 +190,4 @@ export default {
 };
 </script>
 
-
-<style lang="scss" src="./style.scss" scoped>
-</style>
+<style lang="scss" src="./style.scss" scoped></style>

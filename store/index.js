@@ -1,23 +1,41 @@
+import { SERVER_HOST } from "../constants";
 export const state = () => ({
-  users: [],
+  cars: [],
 });
 
 export const mutations = {
-  SET_USERS: (state, payload) => {
-    state.users = payload;
+  SET_CARS: (state, payload) => {
+    state.cars = payload;
   },
 };
 
 export const actions = {
-  async getUsers({ commit }, payload) {
-    const res = await fetch("http://localhost:3333/users");
+  async nuxtServerInit(vuexContext) {
+    await vuexContext.dispatch("getCars", { root: true });
+  },
+  async getCars({ commit }, payload) {
+    const res = await fetch(`${SERVER_HOST}getcars`);
     const data = await res.json();
-    commit("SET_USERS", data);
+    const mappedData = data.map((car) => {
+      const image = `${SERVER_HOST}${car.image}`;
+      return {
+        ...car,
+        image,
+        images: JSON.parse(car.images).map((image) => `${SERVER_HOST}${image}`),
+        engine: car.car_engine,
+        mod: car.car_mod,
+      };
+    });
+    commit("SET_CARS", mappedData);
+  },
+  getCar({ commit, state }, param) {
+    const car = state.cars.find(({ id }) => id === param);
+    return car != null ? car : null;
   },
 };
 
 export const getters = {
-  USERS: (state) => {
-    return state.users;
+  CARS: (state) => {
+    return state.cars;
   },
 };

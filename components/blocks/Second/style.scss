@@ -1,61 +1,112 @@
-.filters-flex {
-    display: flex;
-    justify-content: space-between;
+.cars-list-wrapper {
+  &__cars-with-filters {
+    padding-bottom: 60px;
+  }
 }
 
-.cars-list-wrapper {
+.cars-offers-two {
+  padding-top: 60px;
+  padding-bottom: 3rem;
 }
 
 .cars-offers {
-    margin-top: 100px;
-    margin-bottom: 60px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .cars-slider {
-    flex-basis: 65%;
+  flex-basis: 65%;
 }
-
 .cars-slide {
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 10px;
-    flex-basis: 30%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url(../../../static/images/japan.jpg) no-repeat center;
-    background-size: cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../static/images/japan.jpg) no-repeat center;
+}
+.cars-slide-business {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../static/images/business.jpg) no-repeat center;
+}
+.cars-slide-out {
+  height: 380px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../static/images/promo1.jpg) no-repeat center;
+}
+.cars-slide-auto {
+  height: 380px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../static/images/promo2.jpg) no-repeat center;
+}
+.cars-slide-first {
+  height: 380px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../static/images/promo3.jpg) no-repeat center;
+}
+.cars-slide,
+.cars-slide-business,
+.cars-slide-out,
+.cars-slide-auto,
+.cars-slide-first {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  flex-basis: 30%;
+  background-size: cover;
 }
 .cars-slide-title {
-    font-size: 20px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .cars-slide-subtitle {
-    font-size: 14px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.cars-latest {
+  &__title {
+    h2 {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.cars-banner {
+  padding-top: 60px;
+}
+
+.cars-installment {
+  margin-bottom: 60px;
 }
 
 @media (max-width: 1025px) {
 }
 
 @media (max-width: 769px) {
-    .cars-slide {
-        padding: 20px;
-    }
+  .cars-slide,
+  .cars-slide-business,
+  .cars-slide-out,
+  .cars-slide-auto,
+  .cars-slide-first {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 426px) {
-    .cars-offers {
-        display: block;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-    .cars-slide {
-        margin-top: 2rem;
-    }
+  .cars-offers {
+    display: block;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .cars-slide,
+  .cars-slide-business,
+  .cars-slide-out,
+  .cars-slide-auto,
+  .cars-slide-first {
+    margin-top: 2rem;
+  }
 }
 
 @media (max-width: 376px) {

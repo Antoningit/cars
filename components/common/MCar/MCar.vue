@@ -9,18 +9,20 @@
       class="item-buttons__credit-btn"
       :name="$options.static.ButtonCases.CREDIT"
       :car="car"
+      :cars="cars"
     />
     <m-button-with-modal
       class="item-buttons__trade-in-btn"
       :name="$options.static.ButtonCases.TRADE_IN"
       :car="car"
+      :cars="cars"
     />
   </m-car-content>
 </template>
 
 <script>
 import { ButtonCases } from "../../../constants";
-import MButtonWithModal from "../../ui/MButtonWithModal.vue";
+import MButtonWithModal from "../../ui/MButtonWithModal/MButtonWithModal.vue";
 import MCarContent from "../MCarContent/MCarContent.vue";
 export default {
   components: {
@@ -40,6 +42,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    cars: {
+      type: Array,
+      default: () => [],
+    },
   },
   static: {
     ButtonCases,
@@ -55,5 +61,4 @@ export default {
 };
 </script>
 
-<style src="./style.scss" lang="scss" scoped>
-</style>
+<style src="./style.scss" lang="scss" scoped></style>
