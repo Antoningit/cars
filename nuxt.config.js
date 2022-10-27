@@ -28,6 +28,14 @@ export default {
     { src: "~/plugins/OwlCarousel", mode: "client" },
   ],
 
+  generate: {
+    routes() {
+      const arr = [];
+      for (let i = 0; i < 100; ++i) arr[i] = i + 1;
+      return arr.map((item) => `/catalog/${item}`);
+    },
+  },
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 

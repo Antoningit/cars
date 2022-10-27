@@ -152,7 +152,7 @@ export default {
   },
   computed: {
     latestCars() {
-      return this.cars.filter(({ latest }) => latest === "Да");
+      return this.cars.filter(({ latest }) => latest);
     },
   },
   methods: {

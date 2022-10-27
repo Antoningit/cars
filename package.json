@@ -1,11 +1,11 @@
 {
-  "name": "marketingways",
+  "name": "cars",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
-    "dev": "nuxt start",
+    "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {

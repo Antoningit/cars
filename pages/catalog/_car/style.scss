@@ -29,6 +29,12 @@
     margin-bottom: 2rem;
   }
 }
+.not-found-car {
+  a {
+    color: #000;
+    border-bottom: 1px dashed #000;
+  }
+}
 .card-content {
   margin-top: 2rem;
   &__slider {

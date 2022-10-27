@@ -325,6 +325,9 @@
       />
     </div>
   </div>
+  <div v-else class="not-found-car row">
+    Автомобиля не найдено. <nuxt-link to="/">Вернуться на главную</nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -387,7 +390,7 @@ export default {
       );
     },
     latestCars() {
-      return this.cars.filter(({ latest }) => latest === "Да");
+      return this.cars.filter(({ latest }) => latest);
     },
     firstTabContentLeft() {
       return [
@@ -408,7 +411,7 @@ export default {
         { title: "Таможня", value: this.car.customs },
         { title: "ПТС", value: this.car.pts },
         { title: "Владельцев по ПТС", value: this.car.owners_by_pts },
-        { title: "Торг", value: this.car.auction },
+        { title: "Торг", value: this.car.auction ? "Да" : "Нет" },
       ];
     },
     currentMonth() {

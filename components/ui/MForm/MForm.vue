@@ -241,7 +241,7 @@ export default {
         ...this.car,
       };
       const data = toFormData(formData);
-      fetch(`${SITE_DOMEN}/mail.php`, {
+      fetch(`${SITE_DOMEN}mail.php`, {
         method: "POST",
         body: data,
       })

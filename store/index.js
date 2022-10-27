@@ -1,4 +1,12 @@
-import { SERVER_HOST } from "../constants";
+import {
+  SERVER_HOST,
+  CarBodysValues,
+  CarsEnginesValues,
+  CarsDrivesValues,
+  CarsKppsValues,
+  CarsTitles,
+  CarsWheelsValues,
+} from "../constants";
 export const state = () => ({
   cars: [],
 });
@@ -14,15 +22,20 @@ export const actions = {
     await vuexContext.dispatch("getCars", { root: true });
   },
   async getCars({ commit }, payload) {
-    const res = await fetch(`${SERVER_HOST}getcars`);
+    const res = await fetch(`${SERVER_HOST}api/car`);
     const data = await res.json();
     const mappedData = data.map((car) => {
       const image = `${SERVER_HOST}${car.image}`;
       return {
         ...car,
+        body: CarBodysValues[car.body],
+        drive: CarsDrivesValues[car.drive],
+        kpp: CarsKppsValues[car.kpp],
+        title: CarsTitles[car.title],
+        wheel: CarsWheelsValues[car.wheel],
         image,
         images: JSON.parse(car.images).map((image) => `${SERVER_HOST}${image}`),
-        engine: car.car_engine,
+        engine: CarsEnginesValues[car.car_engine],
         mod: car.car_mod,
       };
     });

@@ -192,7 +192,7 @@ export default {
         )
         .filter(
           ({ year_from: yearFrom }) =>
-            yearFrom === this.queries.carYearFrom ||
+            String(yearFrom) === String(this.queries.carYearFrom) ||
             this.queries.carYearFrom === ""
         )
         .filter(

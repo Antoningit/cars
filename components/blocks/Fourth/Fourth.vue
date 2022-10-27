@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     promoCars() {
-      return this.cars.filter(({ promo }) => promo === "Да");
+      return this.cars.filter(({ promo }) => promo);
     },
   },
 };

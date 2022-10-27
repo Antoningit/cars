@@ -76,10 +76,10 @@ export default {
       return this.$store.getters.CARS;
     },
     promoCars() {
-      return this.cars.filter(({ promo }) => promo === "Да");
+      return this.cars.filter(({ promo }) => promo);
     },
     latestCars() {
-      return this.cars.filter(({ latest }) => latest === "Да");
+      return this.cars.filter(({ latest }) => latest);
     },
   },
 };

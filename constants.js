@@ -212,9 +212,9 @@ export const Queries = {
   sort: "",
 };
 
-export const SITE_DOMEN = "http://cars.onhh.ru";
+export const SITE_DOMEN = "/";
 
-const CarsTitles = [
+export const CarsTitles = [
   "Acura",
   "Audi",
   "BMW",
@@ -620,4 +620,61 @@ export const MonthsOther = [
   "Декабря",
 ];
 
-export const SERVER_HOST = "http://localhost:3333/";
+export const SERVER_HOST = "/";
+
+export const CarsBodys = Object.freeze({
+  BORTOVOY_GRUZOVIK: "Бортовой грузовик",
+  VNEDOROZHNIK: "Внедорожник",
+  IZOTERM: "Изотермический кузов",
+  KABRIOLET: "Кабриолет",
+  KOMPACT_VEN: "Компактвэн",
+  KUPE: "Купэ",
+  LIMUZIN: "Лимузин",
+  LIFTBEK: "Лифтбэк",
+  MIKROAVTOBUS: "Микроавтобус",
+  MINIVEN: "Минивэн",
+  PICKUP: "Пикап",
+  PROMTOVARNYI_AVTOFURGON: "Промтоварный автофургон",
+  REFRIZHERATOR: "Рефрижератор",
+  SEDAN: "Седан",
+  UNIVERSAL: "Универсал",
+  FURGON: "Фургон",
+  HATCHBACK: "Хэтчбэк",
+  FURGON_METAL: "Цельнометаллический фургон",
+});
+
+export const CarBodysValues = Object.values(CarsBodys);
+
+export const CarsEngines = Object.freeze({
+  BENZIN: "Бензин",
+  DIZEL: "Дизель",
+  GAZ: "Газ",
+  GAZ_BENZIN: "Газ/Бензин",
+  GIBRID: "Гибрид",
+});
+
+export const CarsEnginesValues = Object.values(CarBodysValues);
+
+export const CarsDrives = Object.freeze({
+  PEREDNIY: "Передний",
+  ZADNIY: "Задний",
+  POLNIY: "Полный",
+});
+
+export const CarsDrivesValues = Object.values(CarsDrives);
+
+export const CarsKpps = Object.freeze({
+  AUTOMAT: "Автомат",
+  AUTOMAT_VARIATOR: "Автомат вариатор",
+  AUTOMAT_ROBOT: "Автомат робот",
+  HAND: "Механическая",
+});
+
+export const CarsKppsValues = Object.values(CarsKpps);
+
+export const CarsWheels = Object.freeze({
+  RIGHT: "Правый",
+  LEFT: "Левый",
+});
+
+export const CarsWheelsValues = Object.values(CarsWheels);
