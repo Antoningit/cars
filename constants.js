@@ -212,8 +212,6 @@ export const Queries = {
   sort: "",
 };
 
-export const SITE_DOMEN = "/";
-
 export const CarsTitles = [
   "Acura",
   "Audi",
@@ -620,7 +618,8 @@ export const MonthsOther = [
   "Декабря",
 ];
 
-export const SERVER_HOST = "/";
+export const SITE_DOMEN = "http://185.20.224.25:3002/";
+export const SERVER_HOST = "http://185.20.224.25:3002/";
 
 export const CarsBodys = Object.freeze({
   BORTOVOY_GRUZOVIK: "Бортовой грузовик",
@@ -653,7 +652,7 @@ export const CarsEngines = Object.freeze({
   GIBRID: "Гибрид",
 });
 
-export const CarsEnginesValues = Object.values(CarBodysValues);
+export const CarsEnginesValues = Object.values(CarsEngines);
 
 export const CarsDrives = Object.freeze({
   PEREDNIY: "Передний",

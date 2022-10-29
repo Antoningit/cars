@@ -22,10 +22,10 @@ export const actions = {
     await vuexContext.dispatch("getCars", { root: true });
   },
   async getCars({ commit }, payload) {
-    const res = await fetch(`${SERVER_HOST}api/car`);
+    const res = await fetch(`${SERVER_HOST}car`);
     const data = await res.json();
     const mappedData = data.map((car) => {
-      const image = `${SERVER_HOST}${car.image}`;
+      const image = `${SERVER_HOST}uploads/${car.image}`;
       return {
         ...car,
         body: CarBodysValues[car.body],
@@ -34,7 +34,7 @@ export const actions = {
         title: CarsTitles[car.title],
         wheel: CarsWheelsValues[car.wheel],
         image,
-        images: JSON.parse(car.images).map((image) => `${SERVER_HOST}${image}`),
+        images: car.images.map((image) => `${SERVER_HOST}uploads/${image}`),
         engine: CarsEnginesValues[car.car_engine],
         mod: car.car_mod,
       };

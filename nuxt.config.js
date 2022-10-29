@@ -1,6 +1,12 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "server",
+  target: "static",
+  ssr: false,
+
+  /* server: {
+    host: "185.20.224.25",
+    port: "3002",
+  }, */
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -28,13 +34,13 @@ export default {
     { src: "~/plugins/OwlCarousel", mode: "client" },
   ],
 
-  generate: {
+  /* generate: {
     routes() {
       const arr = [];
       for (let i = 0; i < 100; ++i) arr[i] = i + 1;
       return arr.map((item) => `/catalog/${item}`);
     },
-  },
+  }, */
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
