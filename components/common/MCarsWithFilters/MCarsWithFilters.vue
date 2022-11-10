@@ -120,7 +120,7 @@ export default {
   data() {
     return {
       queries: Queries,
-      maxCardsShownCount: 4,
+      maxCardsShownCount: 16,
     };
   },
   created() {
@@ -216,7 +216,7 @@ export default {
     },
     clearFiltersAndQueries() {
       this.clearAllFilters();
-      this.maxCardsShownCount = 4;
+      this.maxCardsShownCount = 16;
       this.$router.push({ query: {} });
     },
     clearAllFilters() {

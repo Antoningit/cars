@@ -55,9 +55,7 @@ export default {
       return Object.values(CarsTitlesWithImgs);
     },
     carsCount() {
-      return this.cars.reduce((acc, { title }, i) => {
-        if (Object.values(CarsTitlesWithImgs)[i].title === title) {
-        }
+      return this.cars.reduce((acc, { title }) => {
         return {
           ...acc,
           [title.replace(/ /g, "_")]: (acc[title] ?? 0) + 1,

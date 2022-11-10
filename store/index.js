@@ -7,6 +7,7 @@ import {
   CarsTitles,
   CarsWheelsValues,
 } from "../constants";
+// import { data } from "../cars";
 export const state = () => ({
   cars: [],
 });
@@ -22,8 +23,11 @@ export const actions = {
     await vuexContext.dispatch("getCars", { root: true });
   },
   async getCars({ commit }, payload) {
+    // prod
     const res = await fetch(`${SERVER_HOST}car`);
     const data = await res.json();
+
+    // dev import {data}
     const mappedData = data.map((car) => {
       const image = `${SERVER_HOST}uploads/${car.image}`;
       return {

@@ -618,8 +618,8 @@ export const MonthsOther = [
   "Декабря",
 ];
 
-export const SITE_DOMEN = "http://185.20.224.25:3002/";
-export const SERVER_HOST = "http://185.20.224.25:3002/";
+export const SITE_DOMEN = "https://vegamotormsk.ru/";
+export const SERVER_HOST = "https://vegamotormsk.ru/";
 
 export const CarsBodys = Object.freeze({
   BORTOVOY_GRUZOVIK: "Бортовой грузовик",

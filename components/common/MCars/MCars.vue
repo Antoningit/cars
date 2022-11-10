@@ -28,7 +28,7 @@ export default {
     },
     maxCardsShownCountProp: {
       type: Number,
-      default: 4,
+      default: 16,
     },
   },
   components: {
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      maxCardsShownCount: 4,
+      maxCardsShownCount: 16,
     };
   },
   watch: {
@@ -52,7 +52,7 @@ export default {
       this.$emit("max-cards-shown-changed", this.maxCardsShownCount);
     },
     setMaxCardsShownCount() {
-      if (this.maxCardsShownCountProp !== 4) {
+      if (this.maxCardsShownCountProp !== 16) {
         return;
       }
       this.maxCardsShownCount = this.maxCardsShownCountProp;
