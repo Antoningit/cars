@@ -33,6 +33,7 @@
 
 @media (max-width: 426px) {
   .filters-with-cars-flex {
+    order: 1;
     &__carousel-desktop {
       display: none;
     }

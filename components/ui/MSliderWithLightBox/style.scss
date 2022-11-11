@@ -75,6 +75,11 @@
 }
 
 @media (max-width: 426px) {
+  .slider__slide {
+    img {
+      height: 18rem;
+    }
+  }
 }
 
 @media (max-width: 376px) {

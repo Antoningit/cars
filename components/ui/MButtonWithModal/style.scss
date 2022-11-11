@@ -190,7 +190,7 @@
 @media (max-width: 426px) {
   .modal-container {
     &__cars {
-      display: block;
+      flex-direction: column;
     }
     &__form {
       flex-basis: 100%;
@@ -204,7 +204,18 @@
   }
   .credit-row {
     &__item {
-      flex-basis: 48%;
+      img {
+        width: 40px;
+      }
+      flex-basis: 24%;
+    }
+  }
+  .credit-item {
+    &__title {
+      font-size: 12px;
+    }
+    &__subtitle {
+      font-size: 10px;
     }
   }
   .trade-in-row {
@@ -213,7 +224,15 @@
       &:nth-child(2) {
         margin-bottom: 1rem;
       }
-      flex-basis: 48%;
+      flex-basis: 24%;
+    }
+  }
+  .trade-in-item {
+    img {
+      width: 45px;
+    }
+    &__title {
+      font-size: 12px;
     }
   }
   .trade-in-advantages {

@@ -28,6 +28,10 @@
   &__brands {
     margin-bottom: 2rem;
   }
+  &__banners-and-car {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .not-found-car {
   a {
@@ -203,6 +207,11 @@
   .car-card {
     &__title {
       font-size: 18px;
+    }
+    &__banners {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      order: 1;
     }
   }
   .card-content {

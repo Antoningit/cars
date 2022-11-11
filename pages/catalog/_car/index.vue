@@ -1,194 +1,197 @@
 <template>
   <div v-if="car !== null" class="car-card">
-    <div class="car-card__banners row">
-      <div class="car-card__banner">
-        <m-button-with-modal
-          :name="$options.static.ButtonCases.CREDIT"
-          :is-banner="true"
-          :is-no-car="true"
-          :cars="cars"
-        />
-      </div>
-      <div class="car-card__second-banner">
-        <m-button-with-modal
-          :name="$options.static.ButtonCases.CREDIT"
-          :is-banner="true"
-          :car="car"
-          :banner-type="2"
-          :cars="cars"
-        />
-      </div>
-    </div>
-    <div class="car-card__main card-main">
-      <div class="card-main__content row">
-        <div class="car-card__title">
-          <h1>
-            {{ car.title }} {{ car.model }}, {{ car.mod }} {{ car.year_from }}
-          </h1>
+    <div class="car-card__banners-and-car">
+      <div class="car-card__banners row">
+        <div class="car-card__banner">
+          <m-button-with-modal
+            :name="$options.static.ButtonCases.CREDIT"
+            :is-banner="true"
+            :is-no-car="true"
+            :cars="cars"
+          />
         </div>
-        <div class="car-card__subtitle mt-1">
-          {{ car.title }} {{ car.model }}, {{ car.year_from }} года выпуска,
-          пробег {{ car.mileage }} км, модификация {{ car.mod }}
-          {{ car.engine }} {{ car.kpp }}, {{ car.drive }} привод, цвет
-          {{ car.color }}, ПТС
-          {{ car.pts }}
+        <div class="car-card__second-banner">
+          <m-button-with-modal
+            :name="$options.static.ButtonCases.CREDIT"
+            :is-banner="true"
+            :car="car"
+            :banner-type="2"
+            :cars="cars"
+          />
         </div>
-        <div class="car-card__content card-content">
-          <div class="card-content__slider">
-            <m-slider-with-ligth-box :slides="car.images" />
-            <div class="card-content__additional additional-content">
-              <div class="additional-content__title">
-                Заинтересовал автомобиль?
-              </div>
-              <div class="additional-content__description">
-                Специалист отдела продаж ответит на любые вопросы по автомобилю.
-              </div>
-              <div class="additional-content__btns content-btns">
-                <div class="content-btns__trade-in">
-                  <m-button-with-modal
-                    :name="$options.static.ButtonCases.TRADE_IN"
-                    :car="car"
-                    :cars="cars"
-                  />
-                </div>
-                <div class="content-btns__credit">
-                  <m-button-with-modal
-                    :name="creditBtnName"
-                    :cars="cars"
-                    :car="car"
-                  />
-                </div>
-                <div class="content-btns__link">8 (222) 999 66-55</div>
-              </div>
-            </div>
+      </div>
+      <div class="car-card__main card-main">
+        <div class="card-main__content row">
+          <div class="car-card__title">
+            <h1>
+              {{ car.title }} {{ car.model }}, {{ car.mod }} {{ car.year_from }}
+            </h1>
           </div>
-          <div class="card-content__info info">
-            <div class="info__content content-info">
-              <div class="content-info__specifications specifications-text">
-                <div class="specifications-text__subtitle mb-1">Цена</div>
-                <div class="specifications-text__price mb-1">
-                  {{ carPrice }} ₽
+          <div class="car-card__subtitle mt-1">
+            {{ car.title }} {{ car.model }}, {{ car.year_from }} года выпуска,
+            пробег {{ car.mileage }} км, модификация {{ car.mod }}
+            {{ car.engine }} {{ car.kpp }}, {{ car.drive }} привод, цвет
+            {{ car.color }}, ПТС
+            {{ car.pts }}
+          </div>
+          <div class="car-card__content card-content">
+            <div class="card-content__slider">
+              <m-slider-with-light-box :slides="car.images" />
+              <div class="card-content__additional additional-content">
+                <div class="additional-content__title">
+                  Заинтересовал автомобиль?
                 </div>
-                <div class="specifications-text__old-price mb-1">
-                  {{ carOldPrice }} ₽
+                <div class="additional-content__description">
+                  Специалист отдела продаж ответит на любые вопросы по
+                  автомобилю.
                 </div>
-                <div class="specifications-text__trade-in">
-                  <m-button-with-modal
-                    :name="$options.static.ButtonCases.TRADE_IN"
-                    :car="car"
-                    :cars="cars"
-                  />
-                </div>
-                <div class="specifications-text__modification modification">
-                  <div class="modification__icon">
-                    <img src="../../../static/images/car1.png" alt="" />
+                <div class="additional-content__btns content-btns">
+                  <div class="content-btns__trade-in">
+                    <m-button-with-modal
+                      :name="$options.static.ButtonCases.TRADE_IN"
+                      :car="car"
+                      :cars="cars"
+                    />
                   </div>
-                  <div class="modification__text modification-text">
-                    <div class="modification-text__title">
-                      {{ car.mod }}
-                    </div>
-                    <div class="modification-text__description">
-                      Модификация автомобиля
-                    </div>
+                  <div class="content-btns__credit">
+                    <m-button-with-modal
+                      :name="creditBtnName"
+                      :cars="cars"
+                      :car="car"
+                    />
                   </div>
-                </div>
-                <div class="specifications-text__modification modification">
-                  <div class="modification__icon">
-                    <img src="../../../static/images/car2.png" alt="" />
-                  </div>
-                  <div class="modification__text modification-text">
-                    <div class="modification-text__title">
-                      {{ car.engine }} / {{ car.kpp }}
-                    </div>
-                    <div class="modification-text__description">
-                      Тип двигателя и коробки передач
-                    </div>
-                  </div>
-                </div>
-                <div class="specifications-text__modification modification">
-                  <div class="modification__icon">
-                    <img src="../../../static/images/car3.png" alt="" />
-                  </div>
-                  <div class="modification__text modification-text">
-                    <div class="modification-text__title">
-                      {{ car.year_from }}
-                    </div>
-                    <div class="modification-text__description">
-                      Год выпуска
-                    </div>
-                  </div>
-                </div>
-                <div class="specifications-text__modification modification">
-                  <div class="modification__icon">
-                    <img src="../../../static/images/car4.png" alt="" />
-                  </div>
-                  <div class="modification__text modification-text">
-                    <div class="modification-text__title">
-                      {{ car.mileage }} км.
-                    </div>
-                    <div class="modification-text__description">
-                      Пробег автомобиля
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="content-info__offer offer-text">
-                <div class="offer-text__subtitle mb-1">В кредит</div>
-                <div class="offer-text__traid-in">
-                  <m-button-with-modal
-                    :name="creditBtnName"
-                    :cars="cars"
-                    :car="car"
-                  />
-                </div>
-                <div class="offer-text__banner">
-                  <m-button-with-modal
-                    :name="$options.static.ButtonCases.CREDIT"
-                    :is-banner="true"
-                    :car="car"
-                    :cars="cars"
-                    :banner-type="5"
-                  />
+                  <div class="content-btns__link">8 (222) 999 66-55</div>
                 </div>
               </div>
             </div>
-            <div class="info__advantages content-advantages">
-              <div class="content-advantages__grid-content grid-content">
-                <div class="grid-content__img">
-                  <img src="../../../static/images/check.png" alt="" />
-                </div>
-                <div class="grid-content__text">
-                  <div class="grid-content__title">
-                    Только проверенные автомобили
+            <div class="card-content__info info">
+              <div class="info__content content-info">
+                <div class="content-info__specifications specifications-text">
+                  <div class="specifications-text__subtitle mb-1">Цена</div>
+                  <div class="specifications-text__price mb-1">
+                    {{ carPrice }} ₽
                   </div>
-                  <div class="grid-content__description">
-                    Все автомобили прошли проверку юридической чистоты.
+                  <div class="specifications-text__old-price mb-1">
+                    {{ carOldPrice }} ₽
+                  </div>
+                  <div class="specifications-text__trade-in">
+                    <m-button-with-modal
+                      :name="$options.static.ButtonCases.TRADE_IN"
+                      :car="car"
+                      :cars="cars"
+                    />
+                  </div>
+                  <div class="specifications-text__modification modification">
+                    <div class="modification__icon">
+                      <img src="../../../static/images/car1.png" alt="" />
+                    </div>
+                    <div class="modification__text modification-text">
+                      <div class="modification-text__title">
+                        {{ car.mod }}
+                      </div>
+                      <div class="modification-text__description">
+                        Модификация автомобиля
+                      </div>
+                    </div>
+                  </div>
+                  <div class="specifications-text__modification modification">
+                    <div class="modification__icon">
+                      <img src="../../../static/images/car2.png" alt="" />
+                    </div>
+                    <div class="modification__text modification-text">
+                      <div class="modification-text__title">
+                        {{ car.engine }} / {{ car.kpp }}
+                      </div>
+                      <div class="modification-text__description">
+                        Тип двигателя и коробки передач
+                      </div>
+                    </div>
+                  </div>
+                  <div class="specifications-text__modification modification">
+                    <div class="modification__icon">
+                      <img src="../../../static/images/car3.png" alt="" />
+                    </div>
+                    <div class="modification__text modification-text">
+                      <div class="modification-text__title">
+                        {{ car.year_from }}
+                      </div>
+                      <div class="modification-text__description">
+                        Год выпуска
+                      </div>
+                    </div>
+                  </div>
+                  <div class="specifications-text__modification modification">
+                    <div class="modification__icon">
+                      <img src="../../../static/images/car4.png" alt="" />
+                    </div>
+                    <div class="modification__text modification-text">
+                      <div class="modification-text__title">
+                        {{ car.mileage }} км.
+                      </div>
+                      <div class="modification-text__description">
+                        Пробег автомобиля
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-info__offer offer-text">
+                  <div class="offer-text__subtitle mb-1">В кредит</div>
+                  <div class="offer-text__traid-in">
+                    <m-button-with-modal
+                      :name="creditBtnName"
+                      :cars="cars"
+                      :car="car"
+                    />
+                  </div>
+                  <div class="offer-text__banner">
+                    <m-button-with-modal
+                      :name="$options.static.ButtonCases.CREDIT"
+                      :is-banner="true"
+                      :car="car"
+                      :cars="cars"
+                      :banner-type="5"
+                    />
                   </div>
                 </div>
               </div>
-              <div class="content-advantages__grid-content grid-content">
-                <div class="grid-content__img">
-                  <img src="../../../static/images/check.png" alt="" />
-                </div>
-                <div class="grid-content__text">
-                  <div class="grid-content__title">
-                    Проверка состояния по 92 пунктам
+              <div class="info__advantages content-advantages">
+                <div class="content-advantages__grid-content grid-content">
+                  <div class="grid-content__img">
+                    <img src="../../../static/images/check.png" alt="" />
                   </div>
-                  <div class="grid-content__description">
-                    Мы продаем только технически исправные автомобили
+                  <div class="grid-content__text">
+                    <div class="grid-content__title">
+                      Только проверенные автомобили
+                    </div>
+                    <div class="grid-content__description">
+                      Все автомобили прошли проверку юридической чистоты.
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="content-advantages__grid-content grid-content">
-                <div class="grid-content__img">
-                  <img src="../../../static/images/check.png" alt="" />
-                </div>
-                <div class="grid-content__text">
-                  <div class="grid-content__title">
-                    Предпродажная подготовка
+                <div class="content-advantages__grid-content grid-content">
+                  <div class="grid-content__img">
+                    <img src="../../../static/images/check.png" alt="" />
                   </div>
-                  <div class="grid-content__description">
-                    Всегда чистый автомобиль и салон
+                  <div class="grid-content__text">
+                    <div class="grid-content__title">
+                      Проверка состояния по 92 пунктам
+                    </div>
+                    <div class="grid-content__description">
+                      Мы продаем только технически исправные автомобили
+                    </div>
+                  </div>
+                </div>
+                <div class="content-advantages__grid-content grid-content">
+                  <div class="grid-content__img">
+                    <img src="../../../static/images/check.png" alt="" />
+                  </div>
+                  <div class="grid-content__text">
+                    <div class="grid-content__title">
+                      Предпродажная подготовка
+                    </div>
+                    <div class="grid-content__description">
+                      Всегда чистый автомобиль и салон
+                    </div>
                   </div>
                 </div>
               </div>
@@ -335,7 +338,7 @@ import { getCar, ButtonCases, Months, MonthsOther } from "../../../constants";
 //import { Cars } from "../../../cars";
 import MTab from "../../../components/ui/MTabs/MTab.vue";
 import MTabs from "../../../components/ui/MTabs/MTabs.vue";
-import MSliderWithLigthBox from "../../../components/ui/MSliderWithLightBox/MSliderWithLightBox.vue";
+import MSliderWithLightBox from "../../../components/ui/MSliderWithLightBox/MSliderWithLightBox.vue";
 import MButtonWithModal from "../../../components/ui/MButtonWithModal/MButtonWithModal.vue";
 import MCars from "../../../components/common/MCars/MCars.vue";
 import MCreditInstallmentWithModal from "../../../components/ui/MCreditInstallmentWithModal/MCreditInstallmentWithModal.vue";
@@ -343,7 +346,7 @@ import MCarsWithOwlCarousel from "../../../components/common/MCarsWithOwlCarouse
 import MCarsTitlesAndImgs from "../../../components/common/MCarsTitlesAndImgs/MCarsTitlesAndImgs.vue";
 export default {
   components: {
-    MSliderWithLigthBox,
+    MSliderWithLightBox,
     MButtonWithModal,
     MCars,
     MTab,
