@@ -111,11 +111,12 @@
                 </div>
               </div>
             </div> -->
-            <m-form
-              :class="{ 'modal-container__form': isCarExist }"
-              :name="name"
-              :car="widgetCar"
-            />
+            <div :class="{ 'modal-container__form': isCarExist }">
+              <m-form :name="name" :car="widgetCar" />
+              <div v-if="tradein && isCarExist">
+                <m-calc-sum :car-price="widgetCar.price" />
+              </div>
+            </div>
           </div>
           <div class="credit-advantages" v-if="credit && isCarExist">
             <div class="credit-advantages__item advantages-item">
@@ -209,6 +210,7 @@ import MButton from "../MButton.vue";
 import MModal from "../MModal/MModal.vue";
 import MForm from "../MForm/MForm.vue";
 import MFiltersWithCars from "../MFiltersWithCars/MFiltersWithCars.vue";
+import MCalcSum from "../MCalcSum/MCalcSum.vue";
 import MBanner from "../MBanner/MBanner.vue";
 import { ButtonCases } from "../../../constants";
 export default {
@@ -219,6 +221,7 @@ export default {
     MFiltersWithCars,
     Portal,
     MBanner,
+    MCalcSum,
   },
   props: {
     name: {

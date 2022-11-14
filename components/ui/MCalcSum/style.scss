@@ -1,0 +1,17 @@
+.calc-sum {
+  &__img {
+    width: 75%;
+  }
+  &__text {
+    padding: 1rem;
+  }
+  background: #fff;
+  box-shadow: 0 10px 10px rgb(0 0 0 / 20%);
+  text-align: center;
+}
+.text {
+  &__span {
+    border-bottom: 1px dashed #000;
+    font-weight: bold;
+  }
+}
