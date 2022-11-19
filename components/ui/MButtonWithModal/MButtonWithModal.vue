@@ -112,7 +112,11 @@
               </div>
             </div> -->
             <div :class="{ 'modal-container__form': isCarExist }">
-              <m-form :name="name" :car="widgetCar" />
+              <m-form
+                :name="name"
+                :car="widgetCar"
+                @close-popup="onModalCloseClicked"
+              />
               <div v-if="tradein && isCarExist">
                 <m-calc-sum :car-price="widgetCar.price" />
               </div>

@@ -58,7 +58,7 @@ export default {
       return this.cars.reduce((acc, { title }) => {
         return {
           ...acc,
-          [title.replace(/ /g, "_")]: (acc[title] ?? 0) + 1,
+          [title.replace(/ /g, "_")]: (acc[title.replace(/ /g, "_")] ?? 0) + 1,
         };
       }, {});
     },

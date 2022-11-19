@@ -27,7 +27,7 @@
             <nuxt-link to="/"
               ><img
                 class="header-logo__img"
-                src="../../../static/images/logo.png"
+                src="../../../static/images/logo.svg"
                 alt=""
             /></nuxt-link>
           </div>

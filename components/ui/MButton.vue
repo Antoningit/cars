@@ -1,7 +1,15 @@
 <template>
   <div class="btn-wrapper" @click="$emit('btn-clicked')">
-    <button class="btn" :class="btn.class">
-      {{ btn.name }}
+    <button
+      class="btn"
+      :class="[btn.class, { 'btn-with-phone': btnWithPhone }]"
+    >
+      <img
+        v-if="btnWithPhone"
+        class="img-phone"
+        src="../../static/images/phone-call.png"
+        alt=""
+      /><span>{{ btn.name }}</span>
     </button>
   </div>
 </template>
@@ -75,6 +83,9 @@ export default {
         name: "",
       };
     },
+    btnWithPhone() {
+      return this.btn.name === ButtonCases.CALLBACK;
+    },
   },
   props: {
     name: {
@@ -88,6 +99,14 @@ export default {
 <style lang="scss" scoped>
 .btn-wrapper {
   display: inline-block;
+}
+.btn-with-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-phone {
+  margin-right: 0.5rem;
 }
 @media (max-width: 1025px) {
 }

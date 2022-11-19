@@ -2,7 +2,7 @@
   <div>
     <img
       class="car-purchase"
-      src="../../../static/images/big_rassrochka.jpg.webp"
+      src="../../../static/images/promo-banner1.jpg"
       alt=""
       @click="onBtnClicked"
     />
@@ -11,7 +11,10 @@
       :modal-type="$options.static.ButtonCases.INSTALLMENT"
       @on-modal-close-click="onModalCloseClicked"
     >
-      <m-form :name="$options.static.ButtonCases.INSTALLMENT" />
+      <m-form
+        :name="$options.static.ButtonCases.INSTALLMENT"
+        @close-popup="onModalCloseClicked"
+      />
     </m-modal>
   </div>
 </template>

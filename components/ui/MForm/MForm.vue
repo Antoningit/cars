@@ -245,7 +245,11 @@ export default {
         method: "POST",
         body: data,
       })
-        .then(() => (this.status = "OK"))
+        .then(() => {
+          this.status = "OK";
+          this.$router.push("/thank");
+          this.$emit("close-popup");
+        })
         .catch(() => (this.status = "ERROR"));
     },
   },
