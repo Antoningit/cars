@@ -82,6 +82,18 @@
     flex-basis: 50%;
   }
 }
+.flex-img {
+  display: flex;
+  &__text {
+    flex-basis: 70%;
+  }
+  &__img-wrapper {
+    flex-basis: 30%;
+  }
+  &__img {
+    width: 55px;
+  }
+}
 .cars-item__img {
   img {
     width: 100%;
@@ -100,9 +112,19 @@
   .item-flex {
     display: block;
   }
+  .flex-img {
+    &__img {
+      width: 100%;
+    }
+  }
 }
 
 @media (max-width: 376px) {
+  .flex-img {
+    &__img {
+      width: 55px;
+    }
+  }
 }
 
 @media (max-width: 321px) {

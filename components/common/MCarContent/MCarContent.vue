@@ -12,14 +12,21 @@
         {{ car.title }}
       </div>
       <div class="cars-item__model">{{ car.model }}</div>
-      <div class="cars-item__mod">
-        {{ car.mod }}
+      <div class="cars-item__flex-img flex-img">
+        <div class="flex-img__text">
+          <div class="cars-item__mod">
+            {{ car.mod }}
+          </div>
+          <div class="cars-item__kpp">
+            <span>{{ car.kpp }}</span>
+            <span>{{ car.engine }}</span>
+          </div>
+          <div class="cars-item__year-from">{{ car.year_from }} г.в.</div>
+        </div>
+        <div class="flex-img__img-wrapper">
+          <img class="flex-img__img" :src="carTitleImgLink" alt="" />
+        </div>
       </div>
-      <div class="cars-item__kpp">
-        <span>{{ car.kpp }}</span>
-        <span>{{ car.engine }}</span>
-      </div>
-      <div class="cars-item__year-from">{{ car.year_from }} г.в.</div>
       <div class="cars-item__mileage">{{ car.mileage }} км.</div>
       <div class="cars-item__flex item-flex" :class="itemFlexClass">
         <div class="item-flex__item">
@@ -41,6 +48,7 @@
 </template>
 
 <script>
+import { CarsTitlesWithImgs } from "../../../constants";
 export default {
   props: {
     car: {
@@ -70,6 +78,12 @@ export default {
     },
     carOldPrice() {
       return Number(this.car.old_price).toLocaleString();
+    },
+    carTitleImgLink() {
+      return (
+        CarsTitlesWithImgs[this.car.title.replace(/ /g, "_").toUpperCase()]
+          ?.img ?? ""
+      );
     },
   },
 };
