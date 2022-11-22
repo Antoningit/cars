@@ -1,9 +1,3 @@
-.cars-list-wrapper {
-  &__cars-with-filters {
-    padding-bottom: 60px;
-  }
-}
-
 .cars-offers-two {
   padding-top: 60px;
   padding-bottom: 3rem;
@@ -68,7 +62,7 @@
 .cars-latest {
   &__title {
     h2 {
-      padding-bottom: 0;
+      padding: 0;
     }
   }
 }
@@ -106,6 +100,9 @@
   .cars-slide-auto,
   .cars-slide-first {
     margin-top: 2rem;
+  }
+  .cars-installment {
+    margin-bottom: 30px;
   }
 }
 

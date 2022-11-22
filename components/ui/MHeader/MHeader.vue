@@ -4,14 +4,21 @@
       <div class="header-top">
         <div class="header-top__content row">
           <div class="header-city">
-            <nuxt-link to="/">г. Москва</nuxt-link>
+            <nuxt-link class="header-city__link" to="/">
+              <img src="../../../static/images/location.png" alt="" />
+              <span>г. Москва</span></nuxt-link
+            >
           </div>
-          <!-- <div class="header-adress"></div> -->
-          <div class="header-phones">
-            <a href="tel:+74955404162">+7 (495) 540 41-62</a>
+          <div class="header-adress">
+            <img src="../../../static/images/clock.png" alt="" />
+            <span>Ежедневно с 09.00 до 22.00</span>
           </div>
           <div class="header-phones">
-            <a href="tel:+78005005397">+7 (800) 500 53-97</a>
+            <img src="../../../static/images/phone-img.png" alt="" />
+            <span>
+              <a href="tel:+78005005397">+7 (800) 555 41-30</a>
+              <a href="tel:+74955404162">+7 (495) 513 11-97</a>
+            </span>
           </div>
           <div class="header-btn">
             <m-button-with-modal
@@ -27,7 +34,7 @@
             <nuxt-link to="/"
               ><img
                 class="header-logo__img"
-                src="../../../static/images/logo.svg"
+                src="../../../static/images/logo2.svg"
                 alt=""
             /></nuxt-link>
           </div>

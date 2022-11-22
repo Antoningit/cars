@@ -1,7 +1,7 @@
 //import { Cars } from "./cars";
 
 export const ButtonCases = Object.freeze({
-  CALLBACK: "Обратный звонок",
+  CALLBACK: "Заказать звонок",
   ORDER: "Оставить заявку",
   CREDIT: "Рассчитать кредит",
   TRADE_IN: "Скидка по TRADE-IN",

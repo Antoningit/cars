@@ -117,7 +117,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: "Обратный звонок",
+      default: "Заказать звонок",
     },
     formType: {
       type: Number,
@@ -160,7 +160,7 @@ export default {
       const { name } = this;
       if (name === ButtonCases.CALLBACK) {
         return {
-          title: "Обратный звонок",
+          title: "Заказать звонок",
           description: "Введите данные, мы Вам перезвоним",
         };
       }

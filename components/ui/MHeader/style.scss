@@ -49,8 +49,23 @@
   }
 }
 .header-city {
-  a {
+  &__link {
     color: #fff;
+    display: flex;
+    align-items: center;
+    span {
+      display: block;
+      margin-left: 0.5rem;
+    }
+  }
+}
+.header-adress {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  span {
+    display: block;
+    margin-left: 0.5rem;
   }
 }
 .header-toggle {
@@ -71,9 +86,15 @@
   }
 }
 .header-phones {
+  display: flex;
+  align-items: center;
   a {
     color: #fff;
     display: block;
+  }
+  span {
+    display: block;
+    margin-left: 0.5rem;
   }
 }
 

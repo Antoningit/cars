@@ -90,7 +90,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: "Обратный звонок",
+      default: "Заказать звонок",
     },
   },
 };

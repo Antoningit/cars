@@ -32,6 +32,9 @@
 }
 
 @media (max-width: 426px) {
+  .cars-list {
+    margin-top: 30px;
+  }
   .filters-with-cars-flex {
     order: 1;
     &__carousel-desktop {

@@ -2,10 +2,15 @@
   <div class="cars-list-wrapper">
     <div class="row">
       <h2>ПРОВЕРЕННЫЕ АВТОМОБИЛИ С ПРОБЕГОМ В НАЛИЧИИ</h2>
-      <m-cars-titles-and-imgs :cars="cars" class="mb-60px" />
+      <m-cars-titles-and-imgs :cars="cars" />
       <div class="cars-installment"><m-credit-installment-with-modal /></div>
-      <div class="cars-list-wrapper__cars-with-filters">
-        <m-cars-with-filters :cars="cars" />
+      <div class="cars-latest">
+        <div class="cars-latest__title" v-if="latestCars.length > 0">
+          <h2>Последние поступления</h2>
+        </div>
+        <div class="cars-latest__cars">
+          <m-cars :cars="latestCars"></m-cars>
+        </div>
       </div>
       <m-slider-with-light-box />
       <div class="cars-offers">
@@ -27,13 +32,9 @@
           </div>
         </div>
       </div>
-      <div class="cars-latest">
-        <div class="cars-latest__title" v-if="latestCars.length > 0">
-          <h2>Последние поступления</h2>
-        </div>
-        <div class="cars-latest__cars">
-          <m-cars :cars="latestCars"></m-cars>
-        </div>
+      <div class="cars-list-wrapper__cars-with-filters">
+        <h2>Каталог</h2>
+        <m-cars-with-filters :cars="cars" />
       </div>
       <div class="cars-banner">
         <m-button-with-modal
@@ -152,7 +153,9 @@ export default {
   },
   computed: {
     latestCars() {
-      return this.cars.filter(({ latest }) => latest);
+      return this.cars
+        .filter(({ latest }) => latest)
+        .sort((a, b) => b.id - a.id);
     },
   },
   methods: {

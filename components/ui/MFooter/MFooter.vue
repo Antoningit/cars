@@ -37,10 +37,10 @@
             <div class="contacts__content">
               <!-- <div class="contacts__adress">г. Москва, ул. Западная, д. 34</div> -->
               <div class="contacts__phone">
-                <a href="tel:+74955404162">+7 (495) 540 41-62</a>
+                <a href="tel:+74955404162">+7 (495) 513 11-97</a>
               </div>
               <div class="contacts__phone">
-                <a href="tel:+78005005397">+7 (800) 500 53-97</a>
+                <a href="tel:+78005005397">+7 (800) 555 41-30</a>
               </div>
               <!-- <div class="contacts__mail">mail@yandex.ru</div> -->
             </div>

@@ -5,6 +5,7 @@
   border-radius: 10px;
   padding: 2rem 2rem 1rem 2rem;
   box-shadow: 0 2px 6px 0 rgb(65 78 91 / 20%);
+  margin-bottom: 60px;
   &__item {
     flex-basis: 10%;
     padding-bottom: 1rem;
@@ -23,6 +24,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 2rem 2rem 1rem 2rem;
+  margin-bottom: 60px;
   &__item {
     flex-basis: 24%;
     padding: 1rem;
@@ -68,12 +70,14 @@
     &__item {
       flex-basis: 33%;
     }
+    margin-bottom: 30px;
   }
   .cars-titles-with-imgs {
     &__item {
       padding: 0.5rem;
       flex-basis: 46%;
     }
+    margin-bottom: 30px;
   }
   .imgs-item {
     &__img {
