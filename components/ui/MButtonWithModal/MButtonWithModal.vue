@@ -118,7 +118,7 @@
                 @close-popup="onModalCloseClicked"
               />
               <div v-if="tradein && isCarExist">
-                <m-calc-sum :car-price="widgetCar.price" />
+                <m-calc-sum :car-price="carPrice" />
               </div>
             </div>
           </div>
@@ -287,6 +287,9 @@ export default {
     },
     isCarExist() {
       return this.car != null || this.isNoCar;
+    },
+    carPrice() {
+      return this.widgetCar?.price ?? 0;
     },
   },
   methods: {

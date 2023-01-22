@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     goToCar(event, id) {
+      // console.log(event.target.tagName);
       if (event.target.tagName === "BUTTON") {
         return;
       }

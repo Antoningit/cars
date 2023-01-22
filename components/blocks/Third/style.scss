@@ -1,13 +1,13 @@
 .addition {
-    &__img {
-        width: 100%;
+  &__img {
+    width: 100%;
+  }
+  &__p {
+    margin-bottom: 20px;
+    &:last-of-type {
+      margin-bottom: 0;
     }
-    &__p {
-        margin-bottom: 20px;
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-    }
+  }
 }
 
 @media (max-width: 1025px) {
@@ -16,7 +16,7 @@
 @media (max-width: 769px) {
 }
 
-@media (max-width: 426px) {
+@media (max-width: 500px) {
 }
 
 @media (max-width: 376px) {

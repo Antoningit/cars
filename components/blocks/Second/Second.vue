@@ -32,10 +32,10 @@
           </div>
         </div>
       </div>
-      <div class="cars-list-wrapper__cars-with-filters">
+      <!-- <div class="cars-list-wrapper__cars-with-filters">
         <h2>Каталог</h2>
         <m-cars-with-filters :cars="cars" />
-      </div>
+      </div> -->
       <div class="cars-banner">
         <m-button-with-modal
           :name="$options.static.ButtonCases.CREDIT"

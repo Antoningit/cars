@@ -1,22 +1,22 @@
 .main {
-    &__text {
-        flex-basis: 50%;
-        h1 {
-            padding-top: 50px;
-            font-weight: 800;
-            font-size: 64px;
-            line-height: 77px;
-            color: #fff;
-        }
-        p {
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 123.19%;
-            padding-top: 30px;
-            padding-bottom: 50px;
-            color: #fff;
-        }
+  &__text {
+    flex-basis: 50%;
+    h1 {
+      padding-top: 50px;
+      font-weight: 800;
+      font-size: 64px;
+      line-height: 77px;
+      color: #fff;
     }
+    p {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 123.19%;
+      padding-top: 30px;
+      padding-bottom: 50px;
+      color: #fff;
+    }
+  }
 }
 .main-content {
 }
@@ -27,7 +27,7 @@
 @media (max-width: 769px) {
 }
 
-@media (max-width: 426px) {
+@media (max-width: 500px) {
 }
 
 @media (max-width: 376px) {

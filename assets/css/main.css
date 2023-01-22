@@ -195,7 +195,7 @@ h2 {
 @media (max-width: 769px) {
 }
 
-@media (max-width: 426px) {
+@media (max-width: 500px) {
   h2 {
     padding: 30px 0;
   }

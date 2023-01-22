@@ -33,13 +33,9 @@
     </transition>
 
     <div class="slider-dots">
-      <div
-        class="slider-dot"
-        v-for="(btn, i) in slides"
-        :key="btn.id"
-        @click="jumpToSlide(i + 1)"
-        :class="slideDotsClass(i)"
-      ></div>
+      <div v-for="(btn, i) in slides" :key="btn.id" @click="jumpToSlide(i + 1)">
+        <div v-if="i < 10" class="slider-dot" :class="slideDotsClass(i)"></div>
+      </div>
     </div>
 
     <div class="slider-arrows">

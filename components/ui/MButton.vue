@@ -1,15 +1,18 @@
 <template>
   <div class="btn-wrapper" @click="$emit('btn-clicked')">
     <button
+      v-if="btnWithPhone"
       class="btn"
       :class="[btn.class, { 'btn-with-phone': btnWithPhone }]"
     >
       <img
-        v-if="btnWithPhone"
         class="img-phone"
         src="../../static/images/phone-call.png"
         alt=""
       /><span>{{ btn.name }}</span>
+    </button>
+    <button v-else class="btn" :class="btn.class">
+      {{ btn.name }}
     </button>
   </div>
 </template>
@@ -114,7 +117,7 @@ export default {
 @media (max-width: 769px) {
 }
 
-@media (max-width: 426px) {
+@media (max-width: 500px) {
 }
 
 @media (max-width: 376px) {

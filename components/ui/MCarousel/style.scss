@@ -1,74 +1,74 @@
 .slider-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .slider__slide {
-    padding: 50px;
-    cursor: pointer;
-    color: #fff;
+  padding: 50px;
+  cursor: pointer;
+  color: #fff;
 }
 
 .slider-arrows {
-    display: flex;
-    color: #fff;
+  display: flex;
+  color: #fff;
 }
 
 .slider-arrow-left {
-    position: absolute;
-    transform: translate(0, -50%);
-    top: 50%;
-    left: 20px;
-    cursor: pointer;
-    width: 30px;
-    img {
-        width: 100%;
-        transform: rotate(180deg);
-    }
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  left: 20px;
+  cursor: pointer;
+  width: 30px;
+  img {
+    width: 100%;
+    transform: rotate(180deg);
+  }
 }
 
 .slider-arrow-right {
-    position: absolute;
-    transform: translate(0, -50%);
-    top: 50%;
-    right: 20px;
-    cursor: pointer;
-    width: 30px;
-    img {
-        width: 100%;
-    }
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  right: 20px;
+  cursor: pointer;
+  width: 30px;
+  img {
+    width: 100%;
+  }
 }
 .slider-dots {
-    display: flex;
-    position: absolute;
-    transform: translate(-50%, 0);
-    left: 50%;
-    bottom: 10px;
+  display: flex;
+  position: absolute;
+  transform: translate(-50%, 0);
+  left: 50%;
+  bottom: 10px;
 }
 
 /* .slider-dot:not(:first-child) {
     margin-left: 1.25rem;
 } */
 .slider-dot {
-    border-radius: 50%;
-    width: 1rem;
-    height: 1rem;
-    background: #fff;
-    border: 0.15rem solid #fff;
-    cursor: pointer;
-    box-shadow: 0px 2px 8px #00000029;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  background: #fff;
+  border: 0.15rem solid #fff;
+  cursor: pointer;
+  box-shadow: 0px 2px 8px #00000029;
 }
 
 .dot__active {
-    background: #c8102e;
+  background: #c8102e;
 }
 
 .cars-list {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .cars-item {
-    flex-basis: 48%;
+  flex-basis: 48%;
 }
 
 @media (max-width: 1025px) {
@@ -77,10 +77,10 @@
 @media (max-width: 769px) {
 }
 
-@media (max-width: 426px) {
-    .cars-list {
-        display: block;
-    }
+@media (max-width: 500px) {
+  .cars-list {
+    display: block;
+  }
 }
 
 @media (max-width: 376px) {

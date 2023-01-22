@@ -60,6 +60,7 @@
 }
 
 .cars-latest {
+  margin-bottom: 60px;
   &__title {
     h2 {
       padding: 0;
@@ -88,7 +89,10 @@
   }
 }
 
-@media (max-width: 426px) {
+@media (max-width: 500px) {
+  .cars-latest {
+    margin-bottom: 30px;
+  }
   .cars-offers {
     display: block;
     margin-top: 2rem;
