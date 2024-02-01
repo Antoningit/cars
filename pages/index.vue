@@ -15,11 +15,6 @@ import Fourth from "../components/blocks/Fourth/Fourth.vue";
 export default {
   name: "IndexPage",
   components: { First, Second, Third, Fourth },
-  async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
-    }
-  },
   computed: {
     cars() {
       return this.$store.getters.CARS;

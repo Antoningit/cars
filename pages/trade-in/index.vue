@@ -16,7 +16,6 @@
             <m-button-with-modal
               :name="$options.static.ButtonCases.TRAID_IN_EXCHANGE"
               :is-no-car="true"
-              :cars="cars"
             />
           </div>
         </div>
@@ -73,11 +72,6 @@ export default {
   },
   static: {
     ButtonCases,
-  },
-  async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
-    }
   },
   computed: {
     cars() {

@@ -4,10 +4,10 @@
       <div class="header-top">
         <div class="header-top__content row">
           <div class="header-city">
-            <nuxt-link class="header-city__link" to="/">
+            <div @click="goToLink('/')" class="header-city__link" to="/">
               <img src="../../../static/images/location.png" alt="" />
-              <span>г. Москва</span></nuxt-link
-            >
+              <span>г. Москва</span>
+            </div>
           </div>
           <div class="header-adress">
             <img src="../../../static/images/clock.png" alt="" />
@@ -16,27 +16,24 @@
           <div class="header-phones">
             <img src="../../../static/images/phone-img.png" alt="" />
             <span>
-              <a href="tel:+78005005397">+7 (800) 555 41-30</a>
+              <a href="tel:+78005005397">+7 (800) 500 53-97</a>
               <a href="tel:+74955404162">+7 (495) 513 11-97</a>
             </span>
           </div>
           <div class="header-btn">
-            <m-button-with-modal
-              :cars="cars"
-              :name="$options.static.ButtonCases.CALLBACK"
-            />
+            <m-button-with-modal :name="$options.static.ButtonCases.CALLBACK" />
           </div>
         </div>
       </div>
       <div class="header-bottom">
         <div class="header-bottom__content row">
           <div class="header-logo">
-            <nuxt-link to="/"
-              ><img
+            <span @click="goToLink('/')">
+              <img
                 class="header-logo__img"
                 src="../../../static/images/logo2.svg"
                 alt=""
-            /></nuxt-link>
+            /></span>
           </div>
           <div class="header-menu">
             <div class="header-menu__list">
@@ -45,7 +42,7 @@
                   v-for="{ name, link } in $options.static.MenuItems"
                   :key="name"
                 >
-                  <nuxt-link :to="link">{{ name }}</nuxt-link>
+                  <span @click="goToLink(link)">{{ name }}</span>
                 </li>
               </ul>
             </div>
@@ -61,7 +58,6 @@
                   <span></span>
                 </div>
                 <m-button-with-modal
-                  :cars="cars"
                   :name="$options.static.ButtonCases.CALLBACK"
                 />
                 <ul>
@@ -76,10 +72,15 @@
                 <div class="menu-mobile__contacts contacts">
                   <div class="contacts__content">
                     <div class="contacts__adress">
-                      г. Москва, ул. Западная, д. 34
+                      г. Москва, ул. Новомосковская, д. 1
                     </div>
-                    <div class="contacts__phone">+7 (999) 444 55-55</div>
-                    <div class="contacts__mail">mail@yandex.ru</div>
+                    <div class="contacts__phone">
+                      <a href="tel:+78005005397">+7 (800) 500 53-97</a>
+                    </div>
+                    <div class="contacts__phone">
+                      <a href="tel:+74955404162">+7 (495) 513 11-97</a>
+                    </div>
+                    <!-- <div class="contacts__mail"></div> -->
                   </div>
                 </div>
               </div>
@@ -105,18 +106,20 @@ export default {
       isShowMenuMobile: false,
     };
   },
-  props: {
-    cars: {
-      type: Array,
-      default: () => [],
-    },
-  },
+  props: {},
   components: { MButtonWithModal },
   static: {
     ButtonCases,
     MenuItems,
   },
   methods: {
+    async goToLink(link) {
+      this.$router.push(link);
+      this.$store.dispatch("toggleLoading", true);
+      this.$store.dispatch("clearCars");
+      await this.$store.dispatch("getCars", { take: 16, skip: 0 });
+      this.$store.dispatch("toggleLoading", false);
+    },
     toggleIsShowMenuMobile() {
       this.isShowMenuMobile = !this.isShowMenuMobile;
     },

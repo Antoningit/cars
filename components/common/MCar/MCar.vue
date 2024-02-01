@@ -9,13 +9,11 @@
       class="item-buttons__credit-btn"
       :name="$options.static.ButtonCases.CREDIT"
       :car="car"
-      :cars="cars"
     />
     <m-button-with-modal
       class="item-buttons__trade-in-btn"
       :name="$options.static.ButtonCases.TRADE_IN"
       :car="car"
-      :cars="cars"
     />
   </m-car-content>
 </template>
@@ -52,7 +50,6 @@ export default {
   },
   methods: {
     goToCar(event, id) {
-      // console.log(event.target.tagName);
       if (event.target.tagName === "BUTTON") {
         return;
       }

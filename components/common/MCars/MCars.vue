@@ -10,8 +10,8 @@
         <m-car :car="car" :cars="cars" />
       </div>
     </transition-group>
-    <div class="center-div" v-if="maxCardsShownCount < cars.length">
-      <button class="btn show-more-btn" @click="increaseMaxToShow(4)">
+    <div class="center-div" v-if="maxCardsShownCount < carsMeta">
+      <button class="btn show-more-btn" @click="increaseMaxToShow(16)">
         Показать еще
       </button>
     </div>
@@ -39,8 +39,18 @@ export default {
       maxCardsShownCount: 16,
     };
   },
+  computed: {
+    carsMeta() {
+      const carsMeta = this.$store.getters.CARS_META;
+      if (carsMeta === null) {
+        return 0;
+      }
+      return Object.values(carsMeta).reduce((acc, value) => acc + value, 0);
+    },
+  },
   watch: {
     maxCardsShownCountProp: {
+      immediate: true,
       handler() {
         this.setMaxCardsShownCount();
       },
@@ -49,12 +59,12 @@ export default {
   methods: {
     increaseMaxToShow(count) {
       this.maxCardsShownCount += count;
-      this.$emit("max-cards-shown-changed", this.maxCardsShownCount);
+      this.$emit("max-cards-shown-changed", 16);
     },
     setMaxCardsShownCount() {
-      if (this.maxCardsShownCountProp !== 16) {
+      /* if (this.maxCardsShownCountProp !== 16) {
         return;
-      }
+      } */
       this.maxCardsShownCount = this.maxCardsShownCountProp;
     },
   },

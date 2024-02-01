@@ -6,14 +6,11 @@
           :name="$options.static.ButtonCases.CREDIT"
           :is-banner="true"
           :is-no-car="true"
-          :cars="cars"
         />
       </div>
       <div class="catalog__title">
-        <h1 v-if="cars.length > 0">
-          Купить автомобиль с пробегом в Москве в кредит ({{
-            cars.length
-          }}
+        <h1 v-if="carsMeta > 0">
+          Купить автомобиль с пробегом в Москве в кредит ({{ carsMeta }}
           авто в наличии)
         </h1>
       </div>
@@ -24,7 +21,16 @@
         технические диагностики и предпродажную подготовку.
       </div>
       <div class="catalog__cars">
-        <m-cars-with-filters :cars="cars" />
+        <!-- 
+        <div v-if="isLoading" class="lds-dual-ring"></div> -->
+        <m-cars-with-filters
+          :cars="cars"
+          :is-disable-btn-by-queries-length="isDisableBtnByQueriesLength"
+          :is-loading="isLoading"
+          @max-cards-shown-changed="getCars"
+          @filter-changed="onFilterChange"
+          @queries-was-set="onFilterChange"
+        />
       </div>
     </div>
     <m-form :form-type="2" />
@@ -52,7 +58,15 @@ import MCarsWithFilters from "../../components/common/MCarsWithFilters/MCarsWith
 import MCarsWithOwlCarousel from "../../components/common/MCarsWithOwlCarousel/MCarsWithOwlCarousel.vue";
 import MCreditInstallmentWithModal from "../../components/ui/MCreditInstallmentWithModal/MCreditInstallmentWithModal.vue";
 import MForm from "../../components/ui/MForm/MForm.vue";
-import { ButtonCases } from "../../constants";
+import { filterQueries } from "../../utils";
+import {
+  ButtonCases,
+  CarsTitles,
+  CarsEnginesValues,
+  CarsKppsValues,
+  CarBodysValues,
+  Queries,
+} from "../../constants";
 //import { Cars } from "../../cars";
 export default {
   components: {
@@ -62,16 +76,36 @@ export default {
     MCreditInstallmentWithModal,
     MForm,
   },
+  data() {
+    return {
+      isDisableBtnByQueriesLength: 0,
+      isLoading: false,
+    };
+  },
+  async destroyed() {
+    // todo - исправить баг
+    /* this.isLoading = true;
+    this.$store.dispatch("clearCars");
+    await this.getCars(16);
+    this.isLoading = false; */
+  },
   static: {
     //Cars,
     ButtonCases,
   },
   async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
+    if (this.$route.path.includes("catalog")) {
+      await this.onFilterChange(this.$route.query);
     }
   },
   computed: {
+    carsMeta() {
+      const carsMeta = this.$store.getters.CARS_META;
+      if (carsMeta === null) {
+        return 0;
+      }
+      return Object.values(carsMeta).reduce((acc, value) => acc + value, 0);
+    },
     cars() {
       return this.$store.getters.CARS;
     },
@@ -80,6 +114,55 @@ export default {
     },
     latestCars() {
       return this.cars.filter(({ latest }) => latest);
+    },
+  },
+  methods: {
+    async getCars(value) {
+      await this.$store.dispatch("getCars", {
+        take: value,
+        skip: this.cars.length,
+      });
+    },
+    async onFilterChange(queries) {
+      if (queries === null) {
+        this.isLoading = true;
+        this.$store.dispatch("clearCars");
+        await this.getCars(16);
+        this.isLoading = false;
+        return;
+      }
+      const queriesMap = {
+        title:
+          queries?.carTitle != null
+            ? CarsTitles.indexOf(queries.carTitle)
+            : null,
+        model: queries?.carModel ?? "",
+        car_engine:
+          queries?.carEngine != null
+            ? CarsEnginesValues.indexOf(queries.carEngine)
+            : null,
+        kpp:
+          queries?.carKpp != null
+            ? CarsKppsValues.indexOf(queries.carKpp)
+            : null,
+        body:
+          queries?.carBody != null
+            ? CarBodysValues.indexOf(queries.carBody)
+            : null,
+        year_from: queries?.carYearFrom ?? null,
+      };
+      const queriesToFetch = filterQueries(queriesMap);
+      console.log(queriesToFetch);
+      if (Object.keys(queriesToFetch).length === 0) {
+        return;
+      }
+      console.log(this.isDisableBtnByQueriesLength);
+      this.isDisableBtnByQueriesLength += 1;
+      console.log(this.isDisableBtnByQueriesLength);
+      this.$store.dispatch("clearCars");
+      this.isLoading = true;
+      await this.$store.dispatch("getCarsByFilter", queriesToFetch);
+      this.isLoading = false;
     },
   },
 };

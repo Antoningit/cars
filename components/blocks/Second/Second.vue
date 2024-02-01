@@ -1,15 +1,26 @@
 <template>
   <div class="cars-list-wrapper">
+    <!-- <div class="cars-danger">
+      <div class="row">
+        На сайте представлены не все модели, за уточнением полного каталога
+        звоните по телефонам:
+        <a href="tel:+78005005397" style="color: #fff">+7 (800) 500 53-97</a>
+        <a href="tel:+74955404162" style="color: #fff">+7 (495) 513 11-97</a>
+      </div>
+    </div> -->
     <div class="row">
       <h2>ПРОВЕРЕННЫЕ АВТОМОБИЛИ С ПРОБЕГОМ В НАЛИЧИИ</h2>
-      <m-cars-titles-and-imgs :cars="cars" />
+      <m-cars-titles-and-imgs />
       <div class="cars-installment"><m-credit-installment-with-modal /></div>
       <div class="cars-latest">
         <div class="cars-latest__title" v-if="latestCars.length > 0">
           <h2>Последние поступления</h2>
         </div>
         <div class="cars-latest__cars">
-          <m-cars :cars="latestCars"></m-cars>
+          <m-cars
+            :cars="latestCars"
+            @max-cards-shown-changed="getCars"
+          ></m-cars>
         </div>
       </div>
       <m-slider-with-light-box />
@@ -17,7 +28,18 @@
         <div class="cars-slider">
           <m-slider v-bind="sliderOptions" />
         </div>
-        <div class="cars-slide">
+        <div class="cars-slide-first">
+          <div class="cars-slide-title mb-1">Первый автомобиль</div>
+          <div class="cars-slide-subtitle mb-1">
+            Отличные варианты для начинающих водителей!
+          </div>
+          <div class="cars-link">
+            <button class="btn slide-link" @click="goToCatalog('sort=asc')">
+              Выбрать
+            </button>
+          </div>
+        </div>
+        <!-- <div class="cars-slide">
           <div class="cars-slide-title mb-1">Неделя внедорожников</div>
           <div class="cars-slide-subtitle mb-1">
             Скидка на все внедорожники до конца недели
@@ -30,7 +52,7 @@
               Выбрать внедорожник
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- <div class="cars-list-wrapper__cars-with-filters">
         <h2>Каталог</h2>
@@ -41,11 +63,10 @@
           :name="$options.static.ButtonCases.CREDIT"
           :is-banner="true"
           :is-no-car="true"
-          :cars="cars"
         />
       </div>
       <div class="cars-offers cars-offers-two">
-        <div class="cars-slide-out">
+        <!-- <div class="cars-slide-out">
           <div class="cars-slide-title mb-1">Внедорожники</div>
           <div class="cars-slide-subtitle mb-1">
             Внедорожники не боятся грязи, дождя и снега. Их владельцы называют
@@ -74,7 +95,7 @@
               Выбрать
             </button>
           </div>
-        </div>
+        </div> 
         <div class="cars-slide-first">
           <div class="cars-slide-title mb-1">Первый автомобиль</div>
           <div class="cars-slide-subtitle mb-1">
@@ -85,7 +106,7 @@
               Выбрать
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="cars-offers">
         <div class="cars-slider">
@@ -106,7 +127,7 @@
 </template>
 
 <script>
-import MCarsWithFilters from "../../common/MCarsWithFilters/MCarsWithFilters.vue";
+/* import MCarsWithFilters from "../../common/MCarsWithFilters/MCarsWithFilters.vue"; */
 import MSliderWithLightBox from "../../ui/MSliderWithLightBox/MSliderWithLightBox.vue";
 import MCarsTitlesAndImgs from "../../common/MCarsTitlesAndImgs/MCarsTitlesAndImgs.vue";
 import MSlider from "../../ui/MSlider/MSlider.vue";
@@ -121,7 +142,7 @@ import {
 //import { Cars } from "../../../cars";
 export default {
   components: {
-    MCarsWithFilters,
+    // MCarsWithFilters,
     MCarsTitlesAndImgs,
     MSlider,
     MSliderWithLightBox,
@@ -153,14 +174,19 @@ export default {
   },
   computed: {
     latestCars() {
-      return this.cars
-        .filter(({ latest }) => latest)
-        .sort((a, b) => b.id - a.id);
+      return this.cars.filter(({ latest }) => latest);
+      //.sort((a, b) => b.id - a.id);
     },
   },
   methods: {
     goToCatalog(value) {
-      this.$router.push(`/catalog/?${value}`);
+      this.$router.push(`/catalog?${value}`);
+    },
+    async getCars(value) {
+      await this.$store.dispatch("getCars", {
+        take: value,
+        skip: this.cars.length,
+      });
     },
   },
 };

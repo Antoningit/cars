@@ -5,3 +5,11 @@ export const toFormData = (obj) => {
   }
   return formData;
 };
+
+export const filterQueries = (queries) => {
+  return Object.fromEntries(
+    Object.entries(queries).filter(
+      ([_, v]) => v !== "" && v !== null && v !== -1
+    )
+  );
+};

@@ -1,6 +1,7 @@
 .cars-offers-two {
   padding-top: 60px;
-  padding-bottom: 3rem;
+  // todo - вернуть баннеры
+  /* padding-bottom: 3rem; */
 }
 
 .cars-offers {
@@ -74,6 +75,14 @@
 
 .cars-installment {
   margin-bottom: 60px;
+}
+
+.cars-danger {
+  background: linear-gradient(180deg, #c01215, #720e16);
+  color: #fff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
 }
 
 @media (max-width: 1025px) {

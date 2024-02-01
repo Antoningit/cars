@@ -31,11 +31,7 @@
             >{{ text }}</small
           >
         </transition-group>
-        <button
-          class="btn form-btn mb-2"
-          type="submit"
-          @click.prevent="onBtnSubmitHandler"
-        >
+        <button class="btn form-btn mb-2" @click.prevent="onBtnSubmitHandler">
           Отправить
         </button>
       </form>
@@ -72,11 +68,7 @@
             />
           </div>
           <div class="request-form__btn">
-            <button
-              class="btn"
-              type="submit"
-              @click.prevent="onBtnSubmitHandler"
-            >
+            <button class="btn" @click.prevent="onBtnSubmitHandler">
               Отправить
             </button>
           </div>
@@ -247,7 +239,8 @@ export default {
       })
         .then(() => {
           this.status = "OK";
-          this.$router.push("/thank");
+          // this.$router.push("/thank");
+          window.location.href = "/thank";
           this.$emit("close-popup");
         })
         .catch(() => (this.status = "ERROR"));

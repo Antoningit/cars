@@ -12,7 +12,6 @@
           <div class="row-text__btn">
             <m-button-with-modal
               :name="$options.static.ButtonCases.CREDIT_ORDER"
-              :cars="cars"
             />
           </div>
         </div>
@@ -37,7 +36,6 @@
           <m-button-with-modal
             :name="$options.static.ButtonCases.TRAID_IN_EXCHANGE"
             :is-no-car="true"
-            :cars="cars"
           />
         </div>
       </div>
@@ -71,11 +69,6 @@ export default {
   },
   static: {
     ButtonCases,
-  },
-  async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
-    }
   },
   computed: {
     cars() {

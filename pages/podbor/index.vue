@@ -31,10 +31,7 @@
             </ul>
           </div>
           <div class="row-text__btn">
-            <m-button-with-modal
-              :name="$options.static.ButtonCases.PODBOR"
-              :cars="cars"
-            />
+            <m-button-with-modal :name="$options.static.ButtonCases.PODBOR" />
           </div>
         </div>
         <div class="podbor-row__img">
@@ -111,11 +108,6 @@ export default {
   },
   static: {
     ButtonCases,
-  },
-  async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
-    }
   },
   computed: {
     cars() {

@@ -3,9 +3,9 @@
     <div class="lds-dual-ring"></div>
   </div>
   <div v-else>
-    <m-header :cars="cars" id="header" />
+    <m-header id="header" />
     <main class="main"><Nuxt /></main>
-    <m-footer :cars="cars" />
+    <m-footer />
     <portal-target name="app"></portal-target>
   </div>
 </template>
@@ -27,14 +27,34 @@ export default {
     };
   },
   mounted() {
-    this.paddingTop = this.resolvePaddingTop();
+    //this.paddingTop = this.resolvePaddingTop();
   },
   async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
+    await this.$store.dispatch("getCarsMeta");
+    if (
+      this.cars.length === 0 &&
+      this.queriesLength === 0 /*Object.keys(this.$route.query).length*/
+    ) {
+      this.$store.dispatch("toggleLoading", true);
+      this.$store.dispatch("clearCars");
+      await this.$store.dispatch("getCars", { take: 16, skip: 0 });
+      this.$store.dispatch("toggleLoading", false);
+      /* await this.$store.dispatch("getCarsByFilter", {
+        title: 33,
+        car_engine: 1,
+        kpp: 0,
+        year_from: 2012,
+      }); */
     }
   },
   computed: {
+    queriesLength() {
+      return Object.keys(
+        Object.fromEntries(
+          Object.entries(this.$route.query).filter(([_, v]) => v !== "")
+        )
+      ).length;
+    },
     isLoading() {
       return this.$store.getters.IS_LOADING;
     },
@@ -53,36 +73,6 @@ export default {
 </script>
 
 <style scoped>
-.loader-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-.lds-dual-ring {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #222;
-  border-color: #222 transparent #222 transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
 .main {
   padding-top: 165px;
 }

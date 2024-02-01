@@ -2,7 +2,7 @@
   <div>
     <div class="filters-flex">
       <m-select
-        :options="carTitleOptions"
+        :options="$options.static.CarsTitles"
         v-model="queries.carTitle"
         @input="setQueryCarTitleAndClearFilters"
       />
@@ -94,7 +94,11 @@
     >
       Очистить фильтры
     </button>
+    <div v-if="isLoading" class="loader-wrapper">
+      <div class="lds-dual-ring"></div>
+    </div>
     <m-cars
+      v-else
       :cars="filteredCarsList"
       :max-cards-shown-count-prop="maxCardsShownCount"
       @max-cards-shown-changed="changeMaxCardsShown"
@@ -105,7 +109,12 @@
 <script>
 import MSelect from "../../ui/MSelect/MSelect.vue";
 import MCars from "../../common/MCars/MCars.vue";
-import { Filters, Queries } from "../../../constants";
+import {
+  Filters,
+  Queries,
+  CarsTitles,
+  fullCarsModels,
+} from "../../../constants";
 export default {
   components: {
     MSelect,
@@ -116,6 +125,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    isDisableBtnByQueriesLength: {
+      type: Number,
+      default: 0,
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -123,16 +140,26 @@ export default {
       maxCardsShownCount: 16,
     };
   },
+  static: {
+    CarsTitles,
+  },
   created() {
     this.setQueries();
+    // this.$emit("queries-was-set", this.queries);
   },
   watch: {
     "$route.query": {
       deep: true,
       handler() {
-        if (this.$route.query != null) {
+        if (this.queriesLength > 0) {
           this.setQueries();
         }
+      },
+    },
+    isDisableBtnByQueriesLength: {
+      immediate: true,
+      handler() {
+        this.maxCardsShownCount = 500;
       },
     },
   },
@@ -144,10 +171,13 @@ export default {
         )
       ).length;
     },
-    carTitleOptions() {
-      return Filters(this.cars).carTitles;
-    },
     carModelsOptions() {
+      if (this.queries.carTitle.length > 0 && this.cars.length > 0) {
+        const carTitle =
+          this.cars.find(({ title }) => title === this.queries.carTitle)
+            ?.title ?? null;
+        return carTitle !== null ? [...new Set(fullCarsModels[carTitle])] : [];
+      }
       const carModelsByCarTitle = this.cars
         .filter(({ title }) => title === this.queries.carTitle)
         .map(({ model }) => model);
@@ -175,7 +205,7 @@ export default {
         )
         .filter(
           ({ model }) =>
-            model === this.queries.carModel ||
+            model.toLowerCase() === this.queries.carModel.toLowerCase() ||
             this.queries.carModel === "" ||
             this.queries.carModel == null
         )
@@ -213,11 +243,13 @@ export default {
   methods: {
     changeMaxCardsShown(value) {
       this.maxCardsShownCount = value;
+      this.$emit("max-cards-shown-changed", value);
     },
     clearFiltersAndQueries() {
       this.clearAllFilters();
       this.maxCardsShownCount = 16;
       this.$router.push({ query: {} });
+      this.$emit("filter-changed", null);
     },
     clearAllFilters() {
       this.queries.carTitle = "";
@@ -231,6 +263,7 @@ export default {
       queries.carTitle = option;
       queries.carModel = "";
       this.$router.push({ query: queries });
+      this.$emit("filter-changed", queries);
       // watch за query
       // this.clearFilters();
     },
@@ -238,26 +271,31 @@ export default {
       const queries = this.resolveQueries();
       queries.carModel = option;
       this.$router.push({ query: queries });
+      this.$emit("filter-changed", queries);
     },
     setQueryCarEngine(option) {
       const queries = this.resolveQueries();
       queries.carEngine = option;
       this.$router.push({ query: queries });
+      this.$emit("filter-changed", queries);
     },
     setQueryCarKpp(option) {
       const queries = this.resolveQueries();
       queries.carKpp = option;
       this.$router.push({ query: queries });
+      this.$emit("filter-changed", queries);
     },
     setQueryCarBody(option) {
       const queries = this.resolveQueries();
       queries.carBody = option;
       this.$router.push({ query: queries });
+      this.$emit("filter-changed", queries);
     },
     setQueryCarYearFrom(option) {
       const queries = this.resolveQueries();
       queries.carYearFrom = option;
       this.$router.push({ query: queries });
+      this.$emit("filter-changed", queries);
     },
     setQueryCarPrice(value) {
       const queries = this.resolveQueries();

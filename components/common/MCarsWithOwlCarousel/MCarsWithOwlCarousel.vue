@@ -1,6 +1,6 @@
 <template>
   <div v-if="cars.length > 0" class="custom-owl-carousel">
-    <carousel v-bind="carouselOptions">
+    <carousel v-bind="carouselOptions" :key="refreshToken">
       <div v-for="car in cars" :key="car.id" class="cars-item">
         <m-car :car="car" :cars="cars" :is-promo="isPromo" />
       </div>
@@ -36,8 +36,16 @@ export default {
   components: {
     MCar,
   },
+  watch: {
+    cars: {
+      handler() {
+        this.refreshToken += 1;
+      },
+    },
+  },
   data() {
     return {
+      refreshToken: 0,
       carouselOptions: {
         responsive: {
           1024: { items: 4, margin: 20, nav: false, dots: false },
@@ -49,6 +57,7 @@ export default {
       },
     };
   },
+  computed: {},
   methods: {},
 };
 </script>

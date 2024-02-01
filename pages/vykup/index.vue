@@ -17,10 +17,7 @@
               </p>
             </div>
             <div class="row-text__btn">
-              <m-button-with-modal
-                :name="$options.static.ButtonCases.VYKUP"
-                :cars="cars"
-              />
+              <m-button-with-modal :name="$options.static.ButtonCases.VYKUP" />
             </div>
           </div>
           <div class="vykup-row__img"></div>
@@ -92,8 +89,10 @@
           Вам требуется автовыкуп в Москве? Оставьте заявку на сайте или
           посетите наш офис «Автомобили с пробегом». Чтобы получить консультацию
           по срочному выкупу автомобилей, свяжитесь с консультантом «Автомобили
-          с пробегом» по телефону 8(800) 500-82-97 в Москве или оставьте заявку
-          и наш специалист незамедлительно свяжется с Вами.
+          с пробегом» по телефону
+          <a href="tel:+78005005397" style="color: #000">+7 (800) 500 53-97</a>
+          в Москве или оставьте заявку и наш специалист незамедлительно свяжется
+          с Вами.
         </h3>
       </div>
     </div>
@@ -110,11 +109,6 @@ export default {
 
   static: {
     ButtonCases,
-  },
-  async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
-    }
   },
   computed: {
     cars() {

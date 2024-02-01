@@ -7,7 +7,6 @@
             :name="$options.static.ButtonCases.CREDIT"
             :is-banner="true"
             :is-no-car="true"
-            :cars="cars"
           />
         </div>
         <div class="car-card__second-banner">
@@ -16,7 +15,6 @@
             :is-banner="true"
             :car="car"
             :banner-type="2"
-            :cars="cars"
           />
         </div>
       </div>
@@ -36,7 +34,7 @@
           </div>
           <div class="car-card__content card-content">
             <div class="card-content__slider">
-              <m-slider-with-light-box :slides="car.images" />
+              <m-slider-with-ligth-box :slides="car.images" />
               <div class="card-content__additional additional-content">
                 <div class="additional-content__title">
                   Заинтересовал автомобиль?
@@ -50,17 +48,16 @@
                     <m-button-with-modal
                       :name="$options.static.ButtonCases.TRADE_IN"
                       :car="car"
-                      :cars="cars"
                     />
                   </div>
                   <div class="content-btns__credit">
-                    <m-button-with-modal
-                      :name="creditBtnName"
-                      :cars="cars"
-                      :car="car"
-                    />
+                    <m-button-with-modal :name="creditBtnName" :car="car" />
                   </div>
-                  <div class="content-btns__link">8 (222) 999 66-55</div>
+                  <div class="content-btns__link">
+                    <a href="tel:+78005005397" style="color: #000"
+                      >+7 (800) 500 53-97</a
+                    >
+                  </div>
                 </div>
               </div>
             </div>
@@ -78,7 +75,6 @@
                     <m-button-with-modal
                       :name="$options.static.ButtonCases.TRADE_IN"
                       :car="car"
-                      :cars="cars"
                     />
                   </div>
                   <div class="specifications-text__modification modification">
@@ -137,18 +133,13 @@
                 <div class="content-info__offer offer-text">
                   <div class="offer-text__subtitle mb-1">В кредит</div>
                   <div class="offer-text__traid-in">
-                    <m-button-with-modal
-                      :name="creditBtnName"
-                      :cars="cars"
-                      :car="car"
-                    />
+                    <m-button-with-modal :name="creditBtnName" :car="car" />
                   </div>
                   <div class="offer-text__banner">
                     <m-button-with-modal
                       :name="$options.static.ButtonCases.CREDIT"
                       :is-banner="true"
                       :car="car"
-                      :cars="cars"
                       :banner-type="5"
                     />
                   </div>
@@ -286,7 +277,6 @@
           :is-banner="true"
           :car="car"
           :banner-type="3"
-          :cars="cars"
         />
       </div>
     </div>
@@ -298,7 +288,6 @@
             :is-banner="true"
             :car="car"
             :banner-type="4"
-            :cars="cars"
           />
         </div>
         <div class="car-card__other card-other" v-if="otherCars.length > 0">
@@ -321,16 +310,12 @@
       </div>
     </div>
     <div class="car-card__brands car-brands">
-      <m-cars-titles-and-imgs
-        :cars="cars"
-        :with-imgs="true"
-        :car-title="car.title"
-      />
+      <m-cars-titles-and-imgs :with-imgs="true" :car-title="car.title" />
     </div>
   </div>
-  <div v-else class="not-found-car row">
+  <!-- <div v-else class="not-found-car row">
     Автомобиля не найдено. <nuxt-link to="/">Вернуться на главную</nuxt-link>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -338,7 +323,7 @@ import { getCar, ButtonCases, Months, MonthsOther } from "../../../constants";
 //import { Cars } from "../../../cars";
 import MTab from "../../../components/ui/MTabs/MTab.vue";
 import MTabs from "../../../components/ui/MTabs/MTabs.vue";
-import MSliderWithLightBox from "../../../components/ui/MSliderWithLightBox/MSliderWithLightBox.vue";
+import MSliderWithLigthBox from "../../../components/ui/MSliderWithLightBox/MSliderWithLightBox.vue";
 import MButtonWithModal from "../../../components/ui/MButtonWithModal/MButtonWithModal.vue";
 import MCars from "../../../components/common/MCars/MCars.vue";
 import MCreditInstallmentWithModal from "../../../components/ui/MCreditInstallmentWithModal/MCreditInstallmentWithModal.vue";
@@ -346,7 +331,7 @@ import MCarsWithOwlCarousel from "../../../components/common/MCarsWithOwlCarouse
 import MCarsTitlesAndImgs from "../../../components/common/MCarsTitlesAndImgs/MCarsTitlesAndImgs.vue";
 export default {
   components: {
-    MSliderWithLightBox,
+    MSliderWithLigthBox,
     MButtonWithModal,
     MCars,
     MTab,
@@ -364,10 +349,15 @@ export default {
     ButtonCases,
   },
   async created() {
-    if (this.cars.length === 0) {
-      await this.$store.dispatch("getCars");
+    const car = getCar(this.cars, Number(this.$route.params.car));
+    if (car == null) {
+      const carFromApi = await this.$store.dispatch("getCarById", {
+        id: Number(this.$route.params.car),
+      });
+      this.car = carFromApi.length > 0 ? carFromApi[0] : null;
+      return;
     }
-    this.car = getCar(this.cars, Number(this.$route.params.car));
+    this.car = car;
   },
   computed: {
     cars() {

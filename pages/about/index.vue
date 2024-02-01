@@ -61,10 +61,7 @@
             </p>
           </div>
           <div class="row-text__btn">
-            <m-button-with-modal
-              :cars="cars"
-              :name="$options.static.ButtonCases.CALLBACK"
-            />
+            <m-button-with-modal :name="$options.static.ButtonCases.CALLBACK" />
           </div>
         </div>
         <div class="about-row__img">
@@ -99,10 +96,9 @@ export default {
   components: {
     MButtonWithModal,
   },
-  props: {
-    cars: {
-      type: Array,
-      default: () => [],
+  computed: {
+    cars() {
+      return this.$store.getters.CARS;
     },
   },
   static: {

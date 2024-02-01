@@ -79,7 +79,6 @@
               v-if="isCarExist"
               :car="car"
               :is-no-car="isNoCar"
-              :cars="cars"
               @car-changed="changeCar"
             />
             <!-- <div v-if="isCarExist" class="advantages">
@@ -235,10 +234,6 @@ export default {
     car: {
       type: Object,
       default: () => {},
-    },
-    cars: {
-      type: Array,
-      default: () => [],
     },
     isNoCar: {
       type: Boolean,

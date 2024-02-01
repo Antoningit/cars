@@ -40,7 +40,7 @@
                 <a href="tel:+74955404162">+7 (495) 513 11-97</a>
               </div>
               <div class="contacts__phone">
-                <a href="tel:+78005005397">+7 (800) 555 41-30</a>
+                <a href="tel:+78005005397">+7 (800) 500 53-97</a>
               </div>
               <!-- <div class="contacts__mail">mail@yandex.ru</div> -->
             </div>
@@ -63,19 +63,25 @@
             class="footer-content__actual content-actual"
             v-if="!isCatalogPage"
           >
-            <div class="footer-content__title">Топ</div>
-            <div
+            <div class="footer-content__title">Юридическая информация</div>
+            <div class="content-actual__p-wrapper">
+              <p>"ООО ""ВОСТОК АВТО""</p>
+              <p>ул Новомосковская, дом 1</p>
+              <p>+7 (495) 663-22-64</p>
+              <p>ОГРН: 1217700646756</p>
+              <p>ИНН: 9702039968</p>
+            </div>
+            <!-- <div
               v-for="actualCar in actualCars"
               class="content-actual__links"
               :key="actualCar"
               @click="goToCatalog(actualCar)"
             >
               {{ actualCar }}
-            </div>
+            </div> -->
           </div>
           <div v-else class="footer-content__btn">
             <m-button-with-modal
-              :cars="cars"
               :name="$options.static.ButtonCases.CREDIT_ORDER"
             />
           </div>
@@ -104,12 +110,7 @@ export default {
   components: {
     MButtonWithModal,
   },
-  props: {
-    cars: {
-      type: Array,
-      default: () => [],
-    },
-  },
+  props: {},
   data() {
     return {
       actualCars: [],
@@ -123,13 +124,16 @@ export default {
     this.actualCars = getUniqueCarTitles(this.cars);
   },
   computed: {
+    cars() {
+      return this.$store.getters.CARS;
+    },
     isCatalogPage() {
       return this.$route.name === "catalog";
     },
   },
   methods: {
     goToCatalog(title) {
-      this.$router.push(`/catalog/?carTitle=${title}`);
+      this.$router.push(`/catalog?carTitle=${title}`);
     },
   },
 };

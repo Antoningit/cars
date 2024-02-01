@@ -2,7 +2,7 @@
   <div class="filters-with-cars-flex">
     <div class="change-car mb-1" v-if="!isChoosingNewCarActive">
       <img src="../../../static/images/electric-car.png" alt="" />
-      <button class="btn clear-btn" @click="toggleIsChoosingNewCarActive">
+      <button class="btn clear-btn" @click="onChangeCarBtnClicked">
         Изменить автомобиль
       </button>
     </div>
@@ -10,11 +10,14 @@
 
     <!-- filters -->
     <div class="mb-1" v-if="isChoosingNewCarActive">Выберите автомобиль</div>
-    <div class="mb-1 filters-in-modal" v-if="isChoosingNewCarActive">
+    <div v-if="isLoading" class="loader-wrapper">
+      <div class="lds-dual-ring"></div>
+    </div>
+    <div class="mb-1 filters-in-modal" v-else-if="isChoosingNewCarActive">
       <m-select
-        :options="carTitleOptions"
+        :options="$options.static.CarsTitles"
         v-model="carTitle"
-        @input="clearFilters"
+        @input="onTitleSelectClicked"
       />
       <m-select
         :options="carModelsOptions"
@@ -65,7 +68,10 @@
         </div>
       </div>
     </transition-group> -->
-    <div class="filters-with-cars-flex__carousel-desktop">
+    <div
+      v-if="cacheCars.length > 0"
+      class="filters-with-cars-flex__carousel-desktop"
+    >
       <m-carousel
         v-if="isChoosingNewCarActive"
         :slides="filteredCarsList"
@@ -75,7 +81,10 @@
         @active-changed="changeActive"
       />
     </div>
-    <div class="filters-with-cars-flex__carousel-mobile">
+    <div
+      v-if="cacheCars.length > 0"
+      class="filters-with-cars-flex__carousel-mobile"
+    >
       <m-carousel-mobile
         v-if="isChoosingNewCarActive"
         :slides="filteredCarsList"
@@ -92,7 +101,7 @@ import MSelect from "../../ui/MSelect/MSelect.vue";
 import MCarousel from "../../ui/MCarousel/MCarousel.vue";
 import MCarouselMobile from "../../ui/MCarousel/MCarouselMobile.vue";
 import MCarWithoutBtn from "../../common/MCarWithoutBtn/MCarWithoutBtn.vue";
-import { Filters } from "../../../constants";
+import { Filters, CarsTitles } from "../../../constants";
 //import { Cars } from "../../../cars";
 export default {
   components: {
@@ -110,15 +119,25 @@ export default {
       type: Boolean,
       default: false,
     },
-    cars: {
+    /* cars: {
       type: Array,
       default: () => [],
-    },
+    }, */
   },
-  created() {
+  async created() {
     if (this.isNoCar) {
       this.isChoosingNewCarActive = true;
-      return;
+      const cars = await this.$store.dispatch("getCarsComponentData", {
+        take: 16,
+        skip: 0,
+      });
+      this.cacheCars = cars;
+      /* this.$store.dispatch("clearCars");
+      await this.$store.dispatch("getCars", {
+        take: 16,
+        skip: 0,
+      });
+      return; */
     }
     if (this.car == null) {
       return;
@@ -133,25 +152,28 @@ export default {
       carModel: "",
       isChoosingNewCarActive: false,
       activeSlide: 0,
+      cacheCars: [],
+      isLoading: false,
     };
   },
   static: {
     //Cars,
+    CarsTitles,
   },
   computed: {
-    carTitleOptions() {
-      return Filters(this.cars).carTitles;
+    cars() {
+      return this.$store.getters.CARS;
     },
     carModelsOptions() {
-      const carModelsByCarTitle = this.cars
+      const carModelsByCarTitle = this.cacheCars
         .filter(({ title }) => title === this.carTitle)
         .map(({ model }) => model);
-      return Filters(this.cars).carModels.filter((model) =>
+      return Filters(this.cacheCars).carModels.filter((model) =>
         carModelsByCarTitle.includes(model)
       );
     },
     filteredCarsList() {
-      return this.cars
+      return this.cacheCars
         .filter(({ title }) => title === this.carTitle || this.carTitle === "")
         .filter(
           ({ model }) =>
@@ -168,18 +190,35 @@ export default {
     setActiveSlideToDefault() {
       this.activeSlide = 1;
     },
-    clearFilters() {
+    async onTitleSelectClicked() {
+      const cars = await this.$store.dispatch("getCarsByFilterComponentData", {
+        title: CarsTitles.indexOf(this.carTitle),
+      });
+      this.cacheCars = cars;
       this.setActiveSlideToDefault();
       this.carModel = "";
     },
-    toggleIsChoosingNewCarActive() {
+    async onChangeCarBtnClicked() {
       this.isChoosingNewCarActive = !this.isChoosingNewCarActive;
+      this.isLoading = true;
+      const cars = await this.$store.dispatch("getCarsByFilterComponentData", {
+        title: CarsTitles.indexOf(this.carTitle),
+      });
+      /* this.$store.dispatch("clearCars");
+      await this.$store.dispatch("getCarsByFilter", {
+        title: CarsTitles.indexOf(this.carTitle),
+      }); */
+      this.isLoading = false;
+      this.cacheCars = cars;
+      // this.$store.dispatch("clearCars");
+      // await this.$store.dispatch("getCars", { take: 400, skip: 0 });
     },
     changeCar(car) {
       this.widgetCar = car;
       this.$emit("car-changed", this.widgetCar);
-      this.toggleIsChoosingNewCarActive();
+      this.isChoosingNewCarActive = false;
       this.setWidgetData();
+      // this.$store.dispatch("setCarsFromCache", this.cacheCars);
     },
     setWidgetData() {
       const { title, model } = this.widgetCar;

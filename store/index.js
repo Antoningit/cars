@@ -1,58 +1,90 @@
-import {
-  SERVER_HOST,
-  CarBodysValues,
-  CarsEnginesValues,
-  CarsDrivesValues,
-  CarsKppsValues,
-  CarsTitles,
-  CarsWheelsValues,
-} from "../constants";
-// import { data } from "../cars";
+// import { getCars } from "../carsDefault";
+import { resolveMappedData, resolveFetchString } from "./storeUtils";
+
 export const state = () => ({
   cars: [],
+  carsMeta: null,
+  isLoading: false,
 });
 
 export const mutations = {
   SET_CARS: (state, payload) => {
+    state.cars = [...state.cars, ...payload];
+  },
+  TOGGLE_LOADING: (state, payload) => {
+    state.isLoading = payload;
+  },
+  CLEAR_CARS: (state) => {
+    state.cars = [];
+  },
+  SET_CARS_FROM_CACHE: (state, payload) => {
     state.cars = payload;
+  },
+  SET_CARS_META: (state, payload) => {
+    state.carsMeta = payload;
   },
 };
 
 export const actions = {
-  async nuxtServerInit(vuexContext) {
-    await vuexContext.dispatch("getCars", { root: true });
-  },
   async getCars({ commit }, payload) {
-    // prod
-    const res = await fetch(`${SERVER_HOST}car`);
+    const res = await fetch(resolveFetchString(payload));
     const data = await res.json();
-
-    // dev import {data}
-    const mappedData = data.map((car) => {
-      const image = `${SERVER_HOST}uploads/${car.image}`;
-      return {
-        ...car,
-        body: CarBodysValues[car.body],
-        drive: CarsDrivesValues[car.drive],
-        kpp: CarsKppsValues[car.kpp],
-        title: CarsTitles[car.title],
-        wheel: CarsWheelsValues[car.wheel],
-        image,
-        images: car.images.map((image) => `${SERVER_HOST}uploads/${image}`),
-        engine: CarsEnginesValues[car.car_engine],
-        mod: car.car_mod,
-      };
-    });
+    //const data = getCars({ take: payload.take, skip: payload.skip });
+    const mappedData = resolveMappedData(data);
     commit("SET_CARS", mappedData);
+  },
+  async getCarsComponentData({ commit }, payload) {
+    const res = await fetch(resolveFetchString(payload));
+    const data = await res.json();
+    const mappedData = resolveMappedData(data);
+    return mappedData;
+  },
+  async getCarsMeta({ commit }, payload) {
+    const res = await fetch(resolveFetchString(payload, "partial"));
+    const data = await res.json();
+    commit("SET_CARS_META", data);
+  },
+  async getCarsByFilter({ commit }, payload) {
+    const res = await fetch(resolveFetchString(payload, "filter"));
+    const data = await res.json();
+    const mappedData = resolveMappedData(data);
+    commit("SET_CARS", mappedData);
+  },
+  async getCarsByFilterComponentData({ commit }, payload) {
+    const res = await fetch(resolveFetchString(payload, "filter"));
+    const data = await res.json();
+    const mappedData = resolveMappedData(data);
+    return mappedData;
+  },
+  async getCarById({ commit }, payload) {
+    const res = await fetch(resolveFetchString(payload, "find"));
+    const data = await res.json();
+    const mappedData = resolveMappedData(data);
+    return mappedData;
   },
   getCar({ commit, state }, param) {
     const car = state.cars.find(({ id }) => id === param);
     return car != null ? car : null;
+  },
+  clearCars({ commit }) {
+    commit("CLEAR_CARS");
+  },
+  setCarsFromCache({ commit }, payload) {
+    commit("SET_CARS_FROM_CACHE", payload);
+  },
+  toggleLoading({ commit }, payload) {
+    commit("TOGGLE_LOADING", payload);
   },
 };
 
 export const getters = {
   CARS: (state) => {
     return state.cars;
+  },
+  CARS_META: (state) => {
+    return state.carsMeta;
+  },
+  IS_LOADING: (state) => {
+    return state.isLoading;
   },
 };
